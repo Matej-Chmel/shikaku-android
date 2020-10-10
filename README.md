@@ -1,7 +1,7 @@
 # Shikaku pro Android
 Projekt do předmětu Tvorba aplikací pro mobilní zařízení II	(TAMZ II).
 
-# Vlastnosti
+## Vlastnosti
 - Ovládání gesty
 - Generování zadání hlavolamu
 - Tvorba vlastních hlavolamů uživatelem
