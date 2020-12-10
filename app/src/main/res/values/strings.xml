@@ -2,4 +2,7 @@
 
 	<string name="app_name">Shikaku</string>
 
+	<string name="button_randomLevel_text">Random level</string>
+	<string name="button_selectLevel_text">Select level</string>
+
 </resources>

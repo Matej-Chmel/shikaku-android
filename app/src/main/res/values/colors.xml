@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<color name="black">#ff000000</color>
-	<color name="orange_dark">#ffe6a637</color>
-	<color name="orange_light">#fffce3bd</color>
-	<color name="red_mild_light">#ffd97250</color>
-	<color name="red_mild_dark">#ffb04737</color>
-	<color name="white" tools:keep="@color/white">#ffffffff</color>
-	<color name="white_orange">#fff7f2e9</color>
+	<color name="green_dark">#ff0d9116</color>
+	<color name="green_night">#ff096b0f</color>
+	<color name="orange_dark">#ffb07207</color>
+	<color name="orange_light">#ffeb7b26</color>
+	<color name="white">#ffffffff</color>
 
 </resources>
