@@ -4,5 +4,9 @@
 
 	<string name="button_randomLevel_text">Náhodný hlavolam</string>
 	<string name="button_selectLevel_text">Výběr hlavolamu</string>
+	<string name="menuItem_about_text">O aplikaci</string>
+	<string name="textView_author_text">Vytvořil Matěj Chmel</string>
+	<string name="textView_github_text">Kód aplikace je dostupný na GitHubu.</string>
+	<string name="imageView_github_contentDescription">Přejít na GitHub.</string>
 
 </resources>

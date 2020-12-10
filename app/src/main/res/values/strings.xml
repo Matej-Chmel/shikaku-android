@@ -4,5 +4,9 @@
 
 	<string name="button_randomLevel_text">Random level</string>
 	<string name="button_selectLevel_text">Select level</string>
+	<string name="menuItem_about_text">About this app</string>
+	<string name="textView_author_text">Created by Matěj Chmel</string>
+	<string name="textView_github_text">Source code is available at GitHub.</string>
+	<string name="imageView_github_contentDescription">View code on GitHub.</string>
 
 </resources>
