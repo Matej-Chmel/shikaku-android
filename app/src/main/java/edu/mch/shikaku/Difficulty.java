@@ -4,11 +4,9 @@ import java.util.HashMap;
 
 public enum Difficulty
 {
-	EASY(R.color.difficulty_easy, 0), NORMAL(
-		R.color.difficulty_normal,
+	EASY(R.color.difficulty_easy, 0), NORMAL(R.color.difficulty_normal,
 		1
-), MEDIUM(R.color.difficulty_medium, 2), HARD(
-		R.color.difficulty_hard,
+), MEDIUM(R.color.difficulty_medium, 2), HARD(R.color.difficulty_hard,
 		3
 ), EXTREME(R.color.difficulty_extreme, 4);
 
@@ -28,6 +26,13 @@ public enum Difficulty
 
 	public static Difficulty calculate(int[][] board, int dimX, int dimY)
 	{
+		int totalSpace = dimX * dimY;
+
+		if (totalSpace <= 9)
+			return Difficulty.EASY;
+		if (totalSpace <= 20)
+			return Difficulty.NORMAL;
+
 		int maxField = 0;
 
 		for (int y = 0; y < dimY; y++)
@@ -41,13 +46,6 @@ public enum Difficulty
 
 		if (maxField == 0)
 			return Difficulty.EASY;
-
-		int totalSpace = dimX * dimY;
-
-		if (totalSpace < 9)
-			return Difficulty.EASY;
-		if (totalSpace < 20)
-			return Difficulty.NORMAL;
 
 		float percentageTake = (float) maxField / (float) totalSpace;
 

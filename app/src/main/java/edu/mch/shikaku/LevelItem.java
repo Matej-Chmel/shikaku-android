@@ -1,9 +1,11 @@
 package edu.mch.shikaku;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 
 public class LevelItem extends Level
 {
+	public Bitmap bitmap;
 	private Difficulty difficulty;
 
 	public LevelItem(int[][] board, Difficulty difficulty, int dimX, int dimY, long id)

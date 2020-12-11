@@ -10,7 +10,6 @@ public abstract class Renderer
 {
 	public static final float LINE_WIDTH = 16;
 	public static final float CENTERED_LINE_WIDTH = 2 * Renderer.LINE_WIDTH;
-	public static final float EDGE_LINE_WIDTH = Renderer.LINE_WIDTH / 2;
 
 	protected final Bitmap bitmap;
 	protected final Canvas canvas;
@@ -38,6 +37,10 @@ public abstract class Renderer
 		this.width = width;
 	}
 
+	public Bitmap getBitmap()
+	{
+		return this.bitmap.copy(this.bitmap.getConfig(), true);
+	}
 	public void renderBackground()
 	{
 		this.canvas.drawColor(Color.WHITE);

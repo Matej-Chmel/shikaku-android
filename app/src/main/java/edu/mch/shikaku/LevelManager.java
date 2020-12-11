@@ -10,7 +10,7 @@ public class LevelManager
 	private static LevelManager instance;
 
 	private final Database database;
-	private final ArrayList<LevelItem> levelItems;
+	public final ArrayList<LevelItem> levelItems;
 
 	public static LevelManager getInstance(Context context)
 	{
@@ -25,14 +25,18 @@ public class LevelManager
 		this.levelItems = this.database.selectAllLevelsItems();
 	}
 
+	public void checkLevelsExist() throws NoLevelsException
+	{
+		if (this.levelItems.isEmpty())
+			throw new NoLevelsException();
+	}
 	public LevelItem getLevel(int index)
 	{
 		return this.levelItems.get(index);
 	}
 	public int getRandomLevelIndex() throws NoLevelsException
 	{
-		if (this.levelItems.isEmpty())
-			throw new NoLevelsException();
+		this.checkLevelsExist();
 		return ThreadLocalRandom.current().nextInt(this.levelItems.size());
 	}
 	public void resetLevels(Context context) throws DatabaseException, IOException

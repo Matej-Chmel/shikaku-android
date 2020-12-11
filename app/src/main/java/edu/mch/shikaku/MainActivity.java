@@ -54,12 +54,20 @@ public class MainActivity extends AppCompatActivity
 		}
 		catch (NoLevelsException e)
 		{
-			Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_SHORT).show();
+			this.toastNoLevels(e);
 		}
 	}
 	public void onButtonSelectLevel(View view)
 	{
-		Toast.makeText(this, "Select", Toast.LENGTH_SHORT).show();
+		try
+		{
+			this.levelManager.checkLevelsExist();
+			this.startActivity(new Intent(this, ListActivity.class));
+		}
+		catch (NoLevelsException e)
+		{
+			this.toastNoLevels(e);
+		}
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -74,5 +82,9 @@ public class MainActivity extends AppCompatActivity
 			this.startActivity(new Intent(this, AboutActivity.class));
 
 		return true;
+	}
+	private void toastNoLevels(NoLevelsException e)
+	{
+		Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_SHORT).show();
 	}
 }

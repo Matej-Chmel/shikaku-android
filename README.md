@@ -2,6 +2,7 @@
 Projekt do předmětu Tvorba aplikací pro mobilní zařízení II (TAMZ II).
 
 ## Vlastnosti
+- [x] Výběr hlavolamu z ListView
 - [ ] Vykreslování pomocí Canvas
 - [ ] Ovládání gesty
 - [ ] Tvorba vlastních hlavolamů uživatelem, ukládání v SQLite databázi

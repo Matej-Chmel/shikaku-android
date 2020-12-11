@@ -13,7 +13,7 @@ public abstract class Level
 	public static final String ID = "id";
 	public static final String TABLE = "levels";
 
-	public int[][] board;
+	protected int[][] board;
 	protected int dimX;
 	protected int dimY;
 	protected long id;
