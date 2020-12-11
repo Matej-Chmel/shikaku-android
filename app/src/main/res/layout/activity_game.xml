@@ -8,18 +8,12 @@
 	android:layout_height="match_parent"
 	tools:context=".GameActivity">
 
-	<TextView
-		android:id="@+id/textView_levelTest"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:inputType="textMultiLine"
-		android:text="1 2 3 4 5"
-		android:textAlignment="center"
-		android:textSize="24sp"
+	<edu.mch.shikaku.GameView
+		android:id="@+id/gameView"
+		android:layout_width="384dp"
+		android:layout_height="384dp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		tools:ignore="HardcodedText,TextViewEdits" />
-
+		app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

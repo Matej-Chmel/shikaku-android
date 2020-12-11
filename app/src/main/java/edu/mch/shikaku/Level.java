@@ -13,17 +13,17 @@ public abstract class Level
 	public static final String ID = "id";
 	public static final String TABLE = "levels";
 
-	protected int[][] board;
+	public int[][] board;
 	protected int dimX;
 	protected int dimY;
 	protected long id;
 
-	public Level(int[][] board, int dimX, int dimY, long id)
+	protected Level(int[][] board, int dimX, int dimY, long id)
 	{
 		this.init(board, dimX, dimY);
 		this.id = id;
 	}
-	public Level(Cursor cursor)
+	protected Level(Cursor cursor)
 	{
 		this.dimX = cursor.getInt(cursor.getColumnIndex(Level.DIM_X));
 		this.dimY = cursor.getInt(cursor.getColumnIndex(Level.DIM_Y));
@@ -45,6 +45,14 @@ public abstract class Level
 		content.put(Level.DIM_X, this.dimX);
 		content.put(Level.DIM_Y, this.dimY);
 		return content;
+	}
+	public int getDimX()
+	{
+		return dimX;
+	}
+	public int getDimY()
+	{
+		return dimY;
 	}
 	public int getField(int x, int y)
 	{
