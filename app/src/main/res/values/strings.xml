@@ -8,5 +8,8 @@
 	<string name="textView_author_text">Created by Matěj Chmel</string>
 	<string name="textView_github_text">Source code is available at GitHub.</string>
 	<string name="imageView_github_contentDescription">View code on GitHub.</string>
+	<string name="exception_noLevels">No levels are available.</string>
+	<string name="exception_databaseError">Database error.</string>
+	<string name="exception_noStandardLevels">Standard levels are not available.</string>
 
 </resources>

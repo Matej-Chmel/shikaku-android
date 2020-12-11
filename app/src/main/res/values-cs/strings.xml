@@ -8,5 +8,8 @@
 	<string name="textView_author_text">Vytvořil Matěj Chmel</string>
 	<string name="textView_github_text">Kód aplikace je dostupný na GitHubu.</string>
 	<string name="imageView_github_contentDescription">Přejít na GitHub.</string>
+	<string name="exception_noLevels">Zadání hlavolamů nejsou k dispozici.</string>
+	<string name="exception_databaseError">Chyba na databázi.</string>
+	<string name="exception_noStandardLevels">Standardní hlavolamy se nepodařilo načíst.</string>
 
 </resources>

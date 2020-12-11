@@ -1,20 +1,65 @@
 package edu.mch.shikaku;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
 {
+	private LevelManager levelManager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_main);
+
+		this.levelManager = LevelManager.getInstance(this);
+		Preferences preferences = new Preferences(this);
+
+		if (preferences.isFirstLaunch())
+		{
+			try
+			{
+				levelManager.resetLevels(this);
+				// preferences.onFirstStartSuccess();
+			}
+			catch (DatabaseException e)
+			{
+				Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_LONG).show();
+			}
+			catch (IOException e)
+			{
+				Toast.makeText(
+						this,
+						this.getResources().getString(R.string.exception_noStandardLevels),
+						Toast.LENGTH_LONG
+				).show();
+			}
+		}
+	}
+
+	public void onButtonRandomLevel(View view)
+	{
+		try
+		{
+			Intent intent = new Intent(this, GameActivity.class);
+			intent.putExtra(IntentExtras.LEVEL_INDEX, this.levelManager.getRandomLevelIndex());
+			this.startActivity(intent);
+		}
+		catch (NoLevelsException e)
+		{
+			Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_SHORT).show();
+		}
+	}
+	public void onButtonSelectLevel(View view)
+	{
+		Toast.makeText(this, "Select", Toast.LENGTH_SHORT).show();
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -29,13 +74,5 @@ public class MainActivity extends AppCompatActivity
 			this.startActivity(new Intent(this, AboutActivity.class));
 
 		return true;
-	}
-	public void onButtonRandomLevel(View view)
-	{
-		Toast.makeText(this, "Random", Toast.LENGTH_SHORT).show();
-	}
-	public void onButtonSelectLevel(View view)
-	{
-		Toast.makeText(this, "Select", Toast.LENGTH_SHORT).show();
 	}
 }

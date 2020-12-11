@@ -1,10 +1,10 @@
 # Shikaku pro Android
-Projekt do předmětu Tvorba aplikací pro mobilní zařízení II	(TAMZ II).
+Projekt do předmětu Tvorba aplikací pro mobilní zařízení II (TAMZ II).
 
 ## Vlastnosti
 - [ ] Vykreslování pomocí Canvas
 - [ ] Ovládání gesty
-- [ ] Tvorba vlastních hlavolamů uživatelem
+- [ ] Tvorba vlastních hlavolamů uživatelem, ukládání v SQLite databázi
 - [ ] Generování zadání hlavolamu
 - [ ] Zvukové efekty
 - [ ] Ukládání nejlepších časů do SQLite databáze
