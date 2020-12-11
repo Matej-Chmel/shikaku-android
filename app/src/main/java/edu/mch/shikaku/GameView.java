@@ -32,9 +32,12 @@ public class GameView extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
+		super.onDraw(canvas);
+
 		if (this.ready && this.changed)
 		{
-			this.topRenderer.render(this.level.board);
+			this.topRenderer.renderBackground();
+			this.topRenderer.render(this.level);
 			this.changed = false;
 		}
 

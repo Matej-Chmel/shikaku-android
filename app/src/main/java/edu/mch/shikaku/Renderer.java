@@ -1,6 +1,7 @@
 package edu.mch.shikaku;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -8,6 +9,8 @@ import android.graphics.PorterDuffXfermode;
 public abstract class Renderer
 {
 	public static final float LINE_WIDTH = 16;
+	public static final float CENTERED_LINE_WIDTH = 2 * Renderer.LINE_WIDTH;
+	public static final float EDGE_LINE_WIDTH = Renderer.LINE_WIDTH / 2;
 
 	protected final Bitmap bitmap;
 	protected final Canvas canvas;
@@ -25,7 +28,7 @@ public abstract class Renderer
 		this.bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 		this.canvas = new Canvas(this.bitmap);
 		this.cleanerPaint = new Paint();
-		cleanerPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+		this.cleanerPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 		this.defaultPaint = new Paint();
 		this.dimX = dimX;
 		this.dimY = dimY;
@@ -35,8 +38,12 @@ public abstract class Renderer
 		this.width = width;
 	}
 
-	public void renderTo(Canvas canvas)
+	public void renderBackground()
 	{
-		canvas.drawBitmap(this.bitmap, 0, 0, this.defaultPaint);
+		this.canvas.drawColor(Color.WHITE);
+	}
+	public void renderTo(Canvas c)
+	{
+		c.drawBitmap(this.bitmap, 0, 0, this.defaultPaint);
 	}
 }
