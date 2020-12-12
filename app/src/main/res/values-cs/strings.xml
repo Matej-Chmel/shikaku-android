@@ -19,5 +19,7 @@
 	<string name="button_clearEditor">Vymazat vše</string>
 	<string name="floatingButton_backToEditor_contentDescription">Zpět do editoru.</string>
 	<string name="toast_saveLevel">Dokončete hlavolam, poté bude uložen.</string>
+	<string name="toast_newBestTime">Rekordní čas!</string>
+	<string name="stopWatch_notAttempted">Nedokončen</string>
 
 </resources>

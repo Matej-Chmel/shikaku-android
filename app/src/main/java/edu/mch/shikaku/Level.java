@@ -7,6 +7,7 @@ import java.util.Scanner;
 public abstract class Level
 {
 	public static final String BOARD = "board";
+	public static final String BEST_TIME = "best_time";
 	public static final String DIFFICULTY = "difficulty";
 	public static final String DIM_X = "dim_x";
 	public static final String DIM_Y = "dim_y";

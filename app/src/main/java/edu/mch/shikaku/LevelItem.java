@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 public class LevelItem extends Level
 {
 	public Bitmap bitmap;
+	private Long bestTime;
 	private Difficulty difficulty;
 
 	public LevelItem(int[][] board, Difficulty difficulty, int dimX, int dimY, long id)
@@ -16,12 +17,22 @@ public class LevelItem extends Level
 	public LevelItem(Cursor cursor)
 	{
 		super(cursor);
+
+		int bestTimeIndex = cursor.getColumnIndex(LevelItem.BEST_TIME);
+		if (!cursor.isNull(bestTimeIndex))
+			this.bestTime = cursor.getLong(bestTimeIndex);
+
 		this.difficulty = Difficulty.fromInteger(cursor.getInt(cursor.getColumnIndex(LevelItem.DIFFICULTY)));
 	}
 
+	public Long getBestTime()
+	{
+		return this.bestTime;
+	}
 	public ContentValues getContentValues()
 	{
 		ContentValues content = super.getContentValues();
+		content.put(LevelItem.BEST_TIME, this.bestTime);
 		content.put(LevelItem.DIFFICULTY, this.difficulty.value);
 		return content;
 	}
@@ -64,10 +75,26 @@ public class LevelItem extends Level
 
 		return builder.toString();
 	}
+	private void updateBitmap()
+	{
+		this.bitmap = null;
+	}
+	public boolean update(Long bestTime)
+	{
+		if (this.bestTime == null || bestTime < this.bestTime)
+		{
+			this.bestTime = bestTime;
+			this.updateBitmap();
+			return true;
+		}
+
+		return false;
+	}
 	public void update(int[][] board, int dimX, int dimY)
 	{
 		this.init(board, dimX, dimY);
-		this.bitmap = null;
+		this.updateBitmap();
+		this.bestTime = null;
 		this.difficulty = Difficulty.calculate(this.board, this.dimX, this.dimY);
 	}
 }

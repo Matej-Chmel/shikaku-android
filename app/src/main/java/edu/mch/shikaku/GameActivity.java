@@ -1,8 +1,14 @@
 package edu.mch.shikaku;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -20,9 +26,13 @@ public class GameActivity extends AppCompatActivity
 	private GameView gameView;
 	private LevelManager levelManager;
 	private SwitchCompat switchEraser;
+	private TextView textViewStopWatch;
 
 	private EditableLevel editableLevel;
+	private LevelItem levelItem;
+	private StopWatch stopWatch;
 	private boolean testGameInProgress;
+	private String toastNewBestTimeText;
 	private String toastSaveLevelText;
 
 	@Override
@@ -39,16 +49,19 @@ public class GameActivity extends AppCompatActivity
 		this.gameView = this.findViewById(R.id.gameView);
 		this.levelManager = LevelManager.getInstance(this);
 		this.switchEraser = this.findViewById(R.id.switch_eraser);
+		this.textViewStopWatch = this.findViewById(R.id.textView_stopWatch);
 
-		this.toastSaveLevelText = this.getResources().getString(R.string.toast_saveLevel);
-
+		Resources resources = this.getResources();
 		Intent intent = this.getIntent();
 		int levelIndex = intent.getIntExtra(IntentExtras.LEVEL_INDEX, 0);
 
+		this.stopWatch = new StopWatch(new Handler(Looper.getMainLooper()), this);
+		this.toastNewBestTimeText = resources.getString(R.string.toast_newBestTime);
+		this.toastSaveLevelText = resources.getString(R.string.toast_saveLevel);
+
 		if (intent.getBooleanExtra(IntentExtras.LAUNCH_EDITOR, false))
 		{
-			this.editableLevel = levelIndex == -1 ? new EditableLevel(
-					GameActivity.DEFAULT_LEVEL_DIMENSION,
+			this.editableLevel = levelIndex == -1 ? new EditableLevel(GameActivity.DEFAULT_LEVEL_DIMENSION,
 					GameActivity.DEFAULT_LEVEL_DIMENSION,
 					this.gameView,
 					this.editorPalette
@@ -64,7 +77,10 @@ public class GameActivity extends AppCompatActivity
 
 	private void loadNextLevel()
 	{
-		this.gameView.init(this, this.levelManager.nextLevel(this.gameView));
+		this.levelItem = this.levelManager.nextLevel();
+		this.gameView.init(this, this.levelItem.toPlayableLevel(this.gameView));
+		this.textViewStopWatch.setTextColor(Color.BLACK);
+		this.stopWatch.start();
 	}
 	public void onButtonClearEditor(View view)
 	{
@@ -89,6 +105,23 @@ public class GameActivity extends AppCompatActivity
 	}
 	public void onGameCompleted()
 	{
+		long milliseconds = this.stopWatch.stop();
+
+		if (milliseconds != 0 && this.levelItem.update(milliseconds))
+		{
+			this.textViewStopWatch.setTextColor(Color.RED);
+			Toast.makeText(this, this.toastNewBestTimeText, Toast.LENGTH_LONG).show();
+
+			try
+			{
+				this.levelManager.saveLevel(this.levelItem);
+			}
+			catch (DatabaseException e)
+			{
+				Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_LONG).show();
+			}
+		}
+
 		if (this.testGameInProgress)
 		{
 			try
@@ -107,6 +140,11 @@ public class GameActivity extends AppCompatActivity
 		this.gameView.disableControl();
 		this.buttonNextLevel.setVisibility(View.VISIBLE);
 	}
+	@SuppressLint("DefaultLocale")
+	public void onStopWatchUpdate(long milliseconds)
+	{
+		this.textViewStopWatch.setText(String.format("%d s", milliseconds / 1000));
+	}
 	private void startEditor()
 	{
 		this.testGameInProgress = false;
@@ -117,6 +155,7 @@ public class GameActivity extends AppCompatActivity
 		this.floatingButtonBackToEditor.setVisibility(View.GONE);
 		this.floatingButtonSaveLevel.setVisibility(View.VISIBLE);
 		this.switchEraser.setVisibility(View.VISIBLE);
+		this.textViewStopWatch.setVisibility(View.GONE);
 		this.gameView.init(this, this.editableLevel);
 
 		this.editableLevel.setControlEnabled(true);

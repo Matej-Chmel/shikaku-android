@@ -21,5 +21,8 @@
 	<string name="floatingButton_backToEditor_contentDescription">Back to editor.</string>
 	<string name="menuItem_resetLevels" translatable="false">Reset</string>
 	<string name="toast_saveLevel">To save your level, you must complete it first.</string>
+	<string name="stopWatch_placeholder" translatable="false">0 s</string>
+	<string name="toast_newBestTime">You beat the record!</string>
+	<string name="stopWatch_notAttempted">Not attempted</string>
 
 </resources>

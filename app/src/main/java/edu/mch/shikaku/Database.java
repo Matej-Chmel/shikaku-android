@@ -17,9 +17,9 @@ public class Database extends SQLiteOpenHelper
 		super(context, DATABASE_NAME, null, 1);
 	}
 
-	public int clearAllLevels()
+	public void clearAllLevels()
 	{
-		return this.getWritableDatabase().delete(Level.TABLE, "1", null);
+		this.getWritableDatabase().delete(Level.TABLE, null, null);
 	}
 	public void deleteLevel(Level level) throws DatabaseException
 	{
@@ -59,10 +59,11 @@ public class Database extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db) throws SQLException
 	{
 		db.execSQL(String.format(
-				"CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT, %s INTEGER, %s INTEGER, %s INTEGER)",
+				"CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT, %s INTEGER, %s INTEGER, %s INTEGER, %s INTEGER)",
 				Level.TABLE,
 				Level.ID,
 				Level.BOARD,
+				Level.BEST_TIME,
 				Level.DIFFICULTY,
 				Level.DIM_X,
 				Level.DIM_Y

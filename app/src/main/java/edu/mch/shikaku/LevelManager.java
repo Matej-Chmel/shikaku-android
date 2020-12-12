@@ -46,12 +46,12 @@ public class LevelManager
 		this.checkLevelsExist();
 		return ThreadLocalRandom.current().nextInt(this.levelItems.size());
 	}
-	public PlayableLevel nextLevel(GameView gameView)
+	public LevelItem nextLevel()
 	{
 		if (this.currentIndex == this.levelItems.size())
 			this.currentIndex = 0;
 
-		return this.levelItems.get(this.currentIndex++).toPlayableLevel(gameView);
+		return this.levelItems.get(this.currentIndex++);
 	}
 	public boolean resetLevels(Context context)
 	{
@@ -144,5 +144,9 @@ public class LevelManager
 			this.database.insertLevel(level);
 			this.levelItems.add(level.createLevelItem());
 		}
+	}
+	public void saveLevel(LevelItem level) throws DatabaseException
+	{
+		this.database.updateLevel(level);
 	}
 }
