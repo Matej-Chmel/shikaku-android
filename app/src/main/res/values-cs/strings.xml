@@ -13,5 +13,6 @@
 	<string name="exception_noStandardLevels">Standardní hlavolamy se nepodařilo načíst.</string>
 	<string name="imageView_levelPreview_contentDescription">Náhled hlavolamu.</string>
 	<string name="button_nextLevel_text">Další hlavolam</string>
+	<string name="floatingButton_createLevel_contentDescription">Vytvořit nový hlavolam.</string>
 
 </resources>

@@ -14,5 +14,6 @@
 	<string name="textView_levelDimensions_placeholder" translatable="false">5x5</string>
 	<string name="imageView_levelPreview_contentDescription">Level preview.</string>
 	<string name="button_nextLevel_text">Next level</string>
+	<string name="floatingButton_createLevel_contentDescription">Create new level.</string>
 
 </resources>

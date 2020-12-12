@@ -10,8 +10,27 @@
 		android:id="@+id/listView_levels"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:longClickable="true"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent" />
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/floatingButton_createLevel"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:clickable="true"
+		android:contentDescription="@string/floatingButton_createLevel_contentDescription"
+		android:focusable="true"
+		android:onClick="onFloatingButtonCreateLevelClicked"
+		app:backgroundTint="@color/blue_light"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.954"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.97"
+		app:srcCompat="@android:drawable/ic_input_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
