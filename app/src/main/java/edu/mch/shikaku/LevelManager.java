@@ -36,9 +36,9 @@ public class LevelManager
 	{
 		this.currentIndex = index;
 	}
-	public EditableLevel getEditableLevel(GameView gameView, int index)
+	public EditableLevel getEditableLevel(GameView gameView, EditorPalette palette, int index)
 	{
-		return this.levelItems.get(index).toEditableLevel(gameView);
+		return this.levelItems.get(index).toEditableLevel(gameView, palette);
 	}
 	public int getRandomLevelIndex() throws NoLevelsException
 	{

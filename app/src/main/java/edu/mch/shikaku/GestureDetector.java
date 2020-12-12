@@ -24,8 +24,8 @@ public class GestureDetector implements View.OnTouchListener
 	@Override
 	public boolean onTouch(View view, MotionEvent event)
 	{
-		int x = Math.max(Math.min((int) (event.getX() / this.moveWidth), this.lastX), 0);
-		int y = Math.max(Math.min((int) (event.getY() / this.moveHeight), this.lastY), 0);
+		int x = PositionCalculator.getPosition(event.getX(), this.lastX, this.moveWidth);
+		int y = PositionCalculator.getPosition(event.getY(), this.lastY, this.moveHeight);
 
 		switch (event.getAction())
 		{

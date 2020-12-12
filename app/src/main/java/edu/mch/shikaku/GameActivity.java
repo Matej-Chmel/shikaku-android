@@ -11,6 +11,7 @@ public class GameActivity extends AppCompatActivity
 	public static final int DEFAULT_LEVEL_DIMENSION = 5;
 
 	private Button buttonNextLevel;
+	private EditorPalette editorPalette;
 	private GameView gameView;
 	private LevelManager levelManager;
 
@@ -21,6 +22,7 @@ public class GameActivity extends AppCompatActivity
 		this.setContentView(R.layout.activity_game);
 
 		this.buttonNextLevel = this.findViewById(R.id.button_nextLevel);
+		this.editorPalette = this.findViewById(R.id.editorPalette);
 		this.gameView = this.findViewById(R.id.gameView);
 		this.levelManager = LevelManager.getInstance(this);
 
@@ -29,14 +31,14 @@ public class GameActivity extends AppCompatActivity
 
 		if (intent.getBooleanExtra(IntentExtras.LAUNCH_EDITOR, false))
 		{
-			this.findViewById(R.id.editorPalette).setVisibility(View.VISIBLE);
+			this.editorPalette.setControlEnabled(true);
 			this.findViewById(R.id.floatingButton_saveLevel).setVisibility(View.VISIBLE);
 			this.gameView.init(
 					this,
 					levelIndex == -1 ? new EditableLevel(GameActivity.DEFAULT_LEVEL_DIMENSION,
 							GameActivity.DEFAULT_LEVEL_DIMENSION,
-							this.gameView
-					) : this.levelManager.getEditableLevel(this.gameView, levelIndex)
+							this.gameView, this.editorPalette
+					) : this.levelManager.getEditableLevel(this.gameView, this.editorPalette, levelIndex)
 			);
 		}
 		else

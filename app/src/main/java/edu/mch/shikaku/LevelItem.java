@@ -39,9 +39,9 @@ public class LevelItem extends Level
 	{
 		return difficulty;
 	}
-	public EditableLevel toEditableLevel(GameView view)
+	public EditableLevel toEditableLevel(GameView view, EditorPalette palette)
 	{
-		return new EditableLevel(this.createBoardCopy(), view, this);
+		return new EditableLevel(this.createBoardCopy(), view, palette, this);
 	}
 	public PlayableLevel toPlayableLevel(GameView view)
 	{
