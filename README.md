@@ -7,7 +7,7 @@ Projekt do předmětu Tvorba aplikací pro mobilní zařízení II (TAMZ II).
 - [x] Vykreslování pomocí Canvas
 - [x] Ovládání gesty
 - [x] Tvorba vlastních hlavolamů uživatelem
-- [ ] Ukládání nejlepších časů do SQLite databáze
+- [x] Ukládání nejlepších časů do SQLite databáze
 - [ ] Zvukové efekty
 - [ ] Generování zadání hlavolamu
 - [ ] Srovnávání nejlepších časů mezi hráči
