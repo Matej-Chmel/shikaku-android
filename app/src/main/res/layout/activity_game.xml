@@ -31,4 +31,35 @@
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent" />
 
+	<edu.mch.shikaku.EditorPalette
+		android:id="@+id/editorPalette"
+		android:layout_width="384dp"
+		android:layout_height="64dp"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.407"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.029" />
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/floatingButton_saveLevel"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:clickable="true"
+		android:contentDescription="@string/floatingButton_saveLevel_contentDescription"
+		android:focusable="true"
+		android:onClick="onFloatingButtonSaveLevel"
+		android:tint="#FFFFFF"
+		android:visibility="gone"
+		app:backgroundTint="@color/blue_light"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.954"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/gameView"
+		app:layout_constraintVertical_bias="0.703"
+		app:srcCompat="@android:drawable/ic_media_play" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

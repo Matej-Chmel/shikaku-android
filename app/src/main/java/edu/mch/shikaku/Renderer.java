@@ -7,33 +7,18 @@ import android.graphics.PorterDuff;
 
 public abstract class Renderer
 {
-	public static final float LINE_WIDTH = 16;
-	public static final float CENTERED_LINE_WIDTH = 2 * Renderer.LINE_WIDTH;
-
 	protected final Bitmap bitmap;
 	protected final Canvas canvas;
 	protected final Paint defaultPaint;
-	protected final float dimX;
-	protected final float dimY;
 	protected final float height;
-	protected final float moveHeight;
-	protected final float moveWidth;
-	protected final float tileHeight;
-	protected final float tileWidth;
 	protected final float width;
 
-	protected Renderer(int dimX, int dimY, int height, int width)
+	protected Renderer(int height, int width)
 	{
 		this.bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 		this.canvas = new Canvas(this.bitmap);
 		this.defaultPaint = new Paint();
-		this.dimX = dimX;
-		this.dimY = dimY;
 		this.height = height;
-		this.tileHeight = (height - (dimY + 1) * Renderer.LINE_WIDTH) / dimY;
-		this.tileWidth = (width - (dimX + 1) * Renderer.LINE_WIDTH) / dimX;
-		this.moveHeight = Renderer.LINE_WIDTH + this.tileHeight;
-		this.moveWidth = Renderer.LINE_WIDTH + this.tileWidth;
 		this.width = width;
 	}
 
@@ -45,12 +30,12 @@ public abstract class Renderer
 	{
 		return this.bitmap.copy(this.bitmap.getConfig(), true);
 	}
-	public void renderBackground(Canvas c)
+	public void renderBackground(Canvas canvas)
 	{
-		c.drawColor(Color.WHITE);
+		canvas.drawColor(Color.WHITE);
 	}
-	public void renderTo(Canvas c)
+	public void renderTo(Canvas canvas)
 	{
-		c.drawBitmap(this.bitmap, 0, 0, this.defaultPaint);
+		canvas.drawBitmap(this.bitmap, 0, 0, this.defaultPaint);
 	}
 }

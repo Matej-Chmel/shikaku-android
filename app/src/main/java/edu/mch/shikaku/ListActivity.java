@@ -1,10 +1,8 @@
 package edu.mch.shikaku;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ListActivity extends AppCompatActivity
@@ -23,17 +21,21 @@ public class ListActivity extends AppCompatActivity
 
 	public void onFloatingButtonCreateLevelClicked(View view)
 	{
-		Toast.makeText(this, "Create level", Toast.LENGTH_SHORT).show();
+		this.startGameActivity(-1, true);
 	}
 	public void onItemClicked(int position)
 	{
-		Intent intent = new Intent(this, GameActivity.class);
-		intent.putExtra(IntentExtras.LEVEL_INDEX, position);
-		this.startActivity(intent);
+		this.startGameActivity(position, false);
 	}
-	@SuppressLint("DefaultLocale")
 	public void onItemLongClicked(int position)
 	{
-		Toast.makeText(this, String.format("Long clicked %d", position), Toast.LENGTH_SHORT).show();
+		this.startGameActivity(position, true);
+	}
+	private void startGameActivity(int position, boolean launchEditor)
+	{
+		Intent intent = new Intent(this, GameActivity.class);
+		intent.putExtra(IntentExtras.LAUNCH_EDITOR, launchEditor);
+		intent.putExtra(IntentExtras.LEVEL_INDEX, position);
+		this.startActivity(intent);
 	}
 }

@@ -2,15 +2,12 @@ package edu.mch.shikaku;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.view.View;
 import androidx.annotation.Nullable;
 
-public class GameView extends View
+public class GameView extends CustomView
 {
-	private boolean changed = true;
 	private GameActivity host;
 	private ViewableLevel level;
-	private boolean ready = false;
 
 	public GameView(Context context)
 	{
@@ -61,11 +58,5 @@ public class GameView extends View
 	{
 		super.onSizeChanged(width, height, oldWidth, oldHeight);
 		this.level.onSizeChanged(height, width);
-		this.ready = true;
-	}
-	public void update()
-	{
-		this.changed = true;
-		this.invalidate();
 	}
 }

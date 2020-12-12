@@ -3,7 +3,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Paint;
 
-public class GestureRenderer extends Renderer
+public class GestureRenderer extends LevelRenderer
 {
 	private final Paint okPaint;
 	private final Paint overlapPaint;

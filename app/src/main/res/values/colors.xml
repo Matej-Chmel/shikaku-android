@@ -26,4 +26,6 @@
 	<color name="gesture_ok">@color/green_dark</color>
 	<color name="gesture_overlaps">@color/red_dangerous</color>
 
+	<color name="editorPalette_chosen">@color/blue_light</color>
+
 </resources>

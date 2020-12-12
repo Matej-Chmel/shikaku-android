@@ -2,7 +2,7 @@ package edu.mch.shikaku;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class TopRenderer extends Renderer
+public class TopRenderer extends LevelRenderer
 {
 	private final Paint blackPaint;
 	private final float textMoveHeight;
@@ -16,7 +16,7 @@ public class TopRenderer extends Renderer
 		this.blackPaint.setColor(Color.BLACK);
 		this.blackPaint.setStyle(Paint.Style.STROKE);
 		this.textMoveHeight = 3 * (this.tileHeight / 4);
-		this.textMoveWidth = 1 * (this.tileWidth / 4);
+		this.textMoveWidth = this.tileWidth / 4;
 		this.textPaint = new Paint(Paint.LINEAR_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
 		this.textPaint.setColor(Color.BLACK);
 		this.textPaint.setStyle(Paint.Style.FILL);
@@ -28,7 +28,7 @@ public class TopRenderer extends Renderer
 		if (!(level instanceof LevelItem))
 			this.clear();
 
-		this.blackPaint.setStrokeWidth(Renderer.LINE_WIDTH);
+		this.blackPaint.setStrokeWidth(LevelRenderer.LINE_WIDTH);
 
 		for (int i = 1; i < this.dimY; i++)
 		{
@@ -42,7 +42,7 @@ public class TopRenderer extends Renderer
 			this.canvas.drawLine(x, 0, x, this.height, this.blackPaint);
 		}
 
-		this.blackPaint.setStrokeWidth(Renderer.CENTERED_LINE_WIDTH);
+		this.blackPaint.setStrokeWidth(LevelRenderer.CENTERED_LINE_WIDTH);
 		this.canvas.drawRect(0, 0, (int) this.width, (int) this.height, this.blackPaint);
 
 		for (int y = 0; y < this.dimY; y++)

@@ -15,5 +15,6 @@
 	<string name="imageView_levelPreview_contentDescription">Level preview.</string>
 	<string name="button_nextLevel_text">Next level</string>
 	<string name="floatingButton_createLevel_contentDescription">Create new level.</string>
+	<string name="floatingButton_saveLevel_contentDescription">Save level.</string>
 
 </resources>

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
-public class BaseRenderer extends Renderer
+public class BaseRenderer extends LevelRenderer
 {
 	private Paint currentPaint;
 	private final CircularPaintList paintList;
@@ -22,8 +22,8 @@ public class BaseRenderer extends Renderer
 		for (int y = 0; y < this.dimY; y++)
 			for (int x = 0; x < this.dimX; x++)
 			{
-				int startX = (int) (x * this.moveWidth + Renderer.LINE_WIDTH);
-				int startY = (int) (y * this.moveHeight + Renderer.LINE_WIDTH);
+				int startX = (int) (x * this.moveWidth + LevelRenderer.LINE_WIDTH);
+				int startY = (int) (y * this.moveHeight + LevelRenderer.LINE_WIDTH);
 
 				Objects.requireNonNull(fieldsByPosition.get(lengthX * y + x))
 						.setBackgroundRectangle(new Rect(

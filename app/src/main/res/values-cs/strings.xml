@@ -14,5 +14,6 @@
 	<string name="imageView_levelPreview_contentDescription">Náhled hlavolamu.</string>
 	<string name="button_nextLevel_text">Další hlavolam</string>
 	<string name="floatingButton_createLevel_contentDescription">Vytvořit nový hlavolam.</string>
+	<string name="floatingButton_saveLevel_contentDescription">Uložit hlavolam.</string>
 
 </resources>

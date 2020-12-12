@@ -36,17 +36,21 @@ public class LevelManager
 	{
 		this.currentIndex = index;
 	}
+	public EditableLevel getEditableLevel(GameView gameView, int index)
+	{
+		return this.levelItems.get(index).toEditableLevel(gameView);
+	}
+	public int getRandomLevelIndex() throws NoLevelsException
+	{
+		this.checkLevelsExist();
+		return ThreadLocalRandom.current().nextInt(this.levelItems.size());
+	}
 	public PlayableLevel nextLevel(GameView gameView)
 	{
 		if (this.currentIndex == this.levelItems.size())
 			this.currentIndex = 0;
 
 		return this.levelItems.get(this.currentIndex++).toPlayableLevel(gameView);
-	}
-	public int getRandomLevelIndex() throws NoLevelsException
-	{
-		this.checkLevelsExist();
-		return ThreadLocalRandom.current().nextInt(this.levelItems.size());
 	}
 	public void resetLevels(Context context) throws DatabaseException, IOException
 	{
