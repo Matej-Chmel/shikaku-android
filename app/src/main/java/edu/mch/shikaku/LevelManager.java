@@ -1,5 +1,6 @@
 package edu.mch.shikaku;
 import android.content.Context;
+import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -52,78 +53,96 @@ public class LevelManager
 
 		return this.levelItems.get(this.currentIndex++).toPlayableLevel(gameView);
 	}
-	public void resetLevels(Context context) throws DatabaseException, IOException
+	public boolean resetLevels(Context context)
 	{
 		this.levelItems.clear();
 		this.database.clearAllLevels();
 
-		String[] levelsData = new AssetReader(context).readFile("levels.txt").split(
-				"\\r\\n[\\r\\n]+");
-
-		for (String data : levelsData)
+		try
 		{
-			String[] rows = data.split("\\r\\n");
-			ArrayList<ArrayList<Integer>> rowValuesLists = new ArrayList<>();
-			int maxWidth = 0;
+			String[] levelsData = new AssetReader(context).readFile("levels.txt").split(
+					"\\r\\n[\\r\\n]+");
 
-			for (String row : rows)
+			for (String data : levelsData)
 			{
-				ArrayList<Integer> rowValues = new ArrayList<>();
-				Scanner scanner = new Scanner(row);
+				String[] rows = data.split("\\r\\n");
+				ArrayList<ArrayList<Integer>> rowValuesLists = new ArrayList<>();
+				int maxWidth = 0;
 
-				while (scanner.hasNext())
-					rowValues.add(scanner.nextInt());
+				for (String row : rows)
+				{
+					ArrayList<Integer> rowValues = new ArrayList<>();
+					Scanner scanner = new Scanner(row);
 
-				int width = rowValues.size();
+					while (scanner.hasNext())
+						rowValues.add(scanner.nextInt());
 
-				if (width > maxWidth)
-					maxWidth = width;
+					int width = rowValues.size();
 
-				rowValuesLists.add(rowValues);
+					if (width > maxWidth)
+						maxWidth = width;
+
+					rowValuesLists.add(rowValues);
+				}
+
+				if (maxWidth == 0)
+					continue;
+
+				int[][] board = new int[maxWidth][rows.length];
+				int y = 0;
+
+				for (ArrayList<Integer> rowValues : rowValuesLists)
+				{
+					int x = 0;
+					int length = rowValues.size();
+
+					for (; x < length; x++)
+						board[x][y] = rowValues.get(x);
+
+					for (; x < maxWidth; x++)
+						board[x][y] = 0;
+
+					y++;
+				}
+
+				this.levelItems.add(new LevelItem(
+						board,
+						Difficulty.calculate(board, maxWidth, rows.length),
+						maxWidth,
+						rows.length,
+						0
+				));
 			}
 
-			if (maxWidth == 0)
-				continue;
-
-			int[][] board = new int[maxWidth][rows.length];
-			int y = 0;
-
-			for (ArrayList<Integer> rowValues : rowValuesLists)
-			{
-				int x = 0;
-				int length = rowValues.size();
-
-				for (; x < length; x++)
-					board[x][y] = rowValues.get(x);
-
-				for (; x < maxWidth; x++)
-					board[x][y] = 0;
-
-				y++;
-			}
-
-			this.levelItems.add(new LevelItem(
-					board,
-					Difficulty.calculate(board, maxWidth, rows.length),
-					maxWidth,
-					rows.length,
-					0
-			));
+			this.database.insertLevels(this.levelItems);
+			return true;
+		}
+		catch (DatabaseException e)
+		{
+			Toast.makeText(context, e.getMessage(context.getResources()), Toast.LENGTH_LONG).show();
+		}
+		catch (IOException e)
+		{
+			Toast.makeText(
+					context,
+					context.getResources().getString(R.string.exception_noStandardLevels),
+					Toast.LENGTH_LONG
+			).show();
 		}
 
-		this.database.insertLevels(this.levelItems);
+		return false;
 	}
-	public void saveLevel(EditableLevel editor) throws DatabaseException
+	public void saveLevel(EditableLevel level) throws DatabaseException
 	{
-		if (editor.itemExists())
+		if (level.itemExists())
 		{
-			this.database.updateLevel(editor);
-			editor.update();
+			this.database.updateLevel(level);
+			level.update();
 		}
 		else
 		{
-			this.database.insertLevel(editor);
-			this.levelItems.add(editor.createLevelItem());
+			this.database.insertLevel(level);
+			this.levelItems.add(level.createLevelItem());
 		}
 	}
 }

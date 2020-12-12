@@ -26,13 +26,13 @@ public class PlayableLevel extends ViewableLevel
 		this.gestureActive = false;
 		this.valuesTotal = 0;
 
-		int lenghtX = this.dimX + 1;
+		int lengthX = this.dimX + 1;
 
 		for (int y = 0; y < this.dimY; y++)
 			for (int x = 0; x < this.dimX; x++)
 			{
 				int value = this.getFieldValue(x, y);
-				this.fieldsByPosition.put(lenghtX * y + x, new GameField(value));
+				this.fieldsByPosition.put(lengthX * y + x, new GameField(value));
 
 				if (value != 0)
 					this.valuesTotal++;

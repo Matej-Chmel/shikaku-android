@@ -38,6 +38,16 @@ public abstract class Level
 				this.board[x][y] = scanner.nextInt();
 	}
 
+	protected int[][] createBoardCopy()
+	{
+		int[][] newBoard = new int[this.dimX][this.dimY];
+
+		for (int y = 0; y < this.dimY; y++)
+			for (int x = 0; x < this.dimX; x++)
+				newBoard[x][y] = this.getFieldValue(x, y);
+
+		return newBoard;
+	}
 	public ContentValues getContentValues()
 	{
 		ContentValues content = new ContentValues();

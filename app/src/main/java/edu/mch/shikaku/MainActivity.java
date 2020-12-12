@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -22,26 +21,8 @@ public class MainActivity extends AppCompatActivity
 		this.levelManager = LevelManager.getInstance(this);
 		Preferences preferences = new Preferences(this);
 
-		if (preferences.isFirstLaunch())
-		{
-			try
-			{
-				levelManager.resetLevels(this);
-				// preferences.onFirstStartSuccess();
-			}
-			catch (DatabaseException e)
-			{
-				Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_LONG).show();
-			}
-			catch (IOException e)
-			{
-				Toast.makeText(
-						this,
-						this.getResources().getString(R.string.exception_noStandardLevels),
-						Toast.LENGTH_LONG
-				).show();
-			}
-		}
+		if (preferences.isFirstLaunch() && levelManager.resetLevels(this))
+			preferences.onFirstLaunchSuccess();
 	}
 
 	public void onButtonRandomLevel(View view)

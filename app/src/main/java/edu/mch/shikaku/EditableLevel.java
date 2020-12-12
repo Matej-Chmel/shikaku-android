@@ -22,13 +22,12 @@ public class EditableLevel extends ViewableLevel implements Clickable
 		this.init(palette);
 		this.clear();
 	}
-	@SuppressLint("ClickableViewAccessibility")
 	private void init(EditorPalette palette)
 	{
-		this.gameView.setOnTouchListener(new ClickDetector(this));
 		this.lastX = this.dimX - 1;
 		this.lastY = this.dimY - 1;
 		this.palette = palette;
+		this.setControlEnabled(this.controlEnabled);
 	}
 
 	public void clear()
@@ -74,6 +73,16 @@ public class EditableLevel extends ViewableLevel implements Clickable
 
 		this.gameView.update();
 	}
+	public PlayableLevel toPlayableLevel()
+	{
+		return new PlayableLevel(
+				this.createBoardCopy(),
+				this.dimX,
+				this.dimY,
+				this.gameView,
+				this.id
+		);
+	}
 	@Override
 	public void renderTo(Canvas canvas)
 	{
@@ -95,6 +104,15 @@ public class EditableLevel extends ViewableLevel implements Clickable
 				newBoard[x][y] = 0;
 
 		this.init(newBoard, newDimX, newDimY);
+	}
+	@SuppressLint("ClickableViewAccessibility")
+	@Override
+	public void setControlEnabled(boolean controlEnabled)
+	{
+		super.setControlEnabled(controlEnabled);
+
+		if (this.controlEnabled)
+			this.gameView.setOnTouchListener(new ClickDetector(this));
 	}
 	private void setFieldValue(int value, int x, int y)
 	{

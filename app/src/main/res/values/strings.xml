@@ -18,5 +18,8 @@
 	<string name="floatingButton_saveLevel_contentDescription">Save level.</string>
 	<string name="switch_eraser_text">Eraser</string>
 	<string name="button_clearEditor">Clear all</string>
+	<string name="floatingButton_backToEditor_contentDescription">Back to editor.</string>
+	<string name="menuItem_resetLevels" translatable="false">Reset</string>
+	<string name="toast_saveLevel">To save your level, you must complete it first.</string>
 
 </resources>

@@ -98,7 +98,7 @@ public class Database extends SQLiteOpenHelper
 				level.getContentValues(),
 				level.getWhereCondition(),
 				level.getIdString()
-		) == 1)
+		) != 1)
 			throw new DatabaseException(level, "updated");
 	}
 }

@@ -19,16 +19,6 @@ public class LevelItem extends Level
 		this.difficulty = Difficulty.fromInteger(cursor.getInt(cursor.getColumnIndex(LevelItem.DIFFICULTY)));
 	}
 
-	private int[][] createBoardCopy()
-	{
-		int[][] newBoard = new int[this.dimX][this.dimY];
-
-		for (int y = 0; y < this.dimY; y++)
-			for (int x = 0; x < this.dimX; x++)
-				newBoard[x][y] = this.getFieldValue(x, y);
-
-		return newBoard;
-	}
 	public ContentValues getContentValues()
 	{
 		ContentValues content = super.getContentValues();
@@ -77,6 +67,7 @@ public class LevelItem extends Level
 	public void update(int[][] board, int dimX, int dimY)
 	{
 		this.init(board, dimX, dimY);
+		this.bitmap = null;
 		this.difficulty = Difficulty.calculate(this.board, this.dimX, this.dimY);
 	}
 }
