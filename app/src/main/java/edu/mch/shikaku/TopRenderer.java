@@ -25,7 +25,9 @@ public class TopRenderer extends Renderer
 
 	public void draw(Level level)
 	{
-		this.clear();
+		if (!(level instanceof LevelItem))
+			this.clear();
+
 		this.blackPaint.setStrokeWidth(Renderer.LINE_WIDTH);
 
 		for (int i = 1; i < this.dimY; i++)

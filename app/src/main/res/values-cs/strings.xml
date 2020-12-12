@@ -12,5 +12,6 @@
 	<string name="exception_databaseError">Chyba na databázi.</string>
 	<string name="exception_noStandardLevels">Standardní hlavolamy se nepodařilo načíst.</string>
 	<string name="imageView_levelPreview_contentDescription">Náhled hlavolamu.</string>
+	<string name="button_nextLevel_text">Další hlavolam</string>
 
 </resources>

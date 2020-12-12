@@ -16,6 +16,7 @@ public class PlayableLevel extends ViewableLevel
 	private GestureRenderer gestureRenderer;
 	private int gestureStartX;
 	private int gestureStartY;
+	private int valuesTotal;
 
 	protected PlayableLevel(int[][] board, int dimX, int dimY, GameView gameView, long id)
 	{
@@ -23,12 +24,19 @@ public class PlayableLevel extends ViewableLevel
 		this.fieldsByPosition = new HashMap<>();
 		this.gameRectangles = new LinkedHashSet<>();
 		this.gestureActive = false;
+		this.valuesTotal = 0;
 
 		int lenghtX = this.dimX + 1;
 
 		for (int y = 0; y < this.dimY; y++)
 			for (int x = 0; x < this.dimX; x++)
-				this.fieldsByPosition.put(lenghtX * y + x, new GameField(this.getFieldValue(x, y)));
+			{
+				int value = this.getFieldValue(x, y);
+				this.fieldsByPosition.put(lenghtX * y + x, new GameField(value));
+
+				if (value != 0)
+					this.valuesTotal++;
+			}
 	}
 
 	private GameRectangle createGameRectangle()
@@ -58,11 +66,21 @@ public class PlayableLevel extends ViewableLevel
 
 		GameRectangle rectangle = this.createGameRectangle();
 
-		if (rectangle.doesOverlap())
+		if (this.gestureStartX == this.gestureEndX && this.gestureStartY == this.gestureEndY)
+		{
+			if (rectangle.doesOverlap())
+				this.gameRectangles.remove(rectangle.popOverlapping());
+			return;
+		}
+
+		if (!rectangle.isCorrect())
 			return;
 
 		rectangle.setAsParent();
 		this.gameRectangles.add(rectangle);
+
+		if (this.gameRectangles.size() == this.valuesTotal)
+			this.gameView.onLevelCompleted();
 	}
 	public void onGestureMove(int x, int y)
 	{
@@ -106,7 +124,10 @@ public class PlayableLevel extends ViewableLevel
 	{
 		this.topRenderer.renderBackground(canvas);
 		this.baseRenderer.renderTo(canvas);
-		this.gestureRenderer.renderTo(canvas);
+
+		if (this.gestureActive)
+			this.gestureRenderer.renderTo(canvas);
+
 		this.topRenderer.renderTo(canvas);
 	}
 	public void update()

@@ -30,8 +30,10 @@ public class GameField
 	{
 		this.parent = parent;
 	}
-	public void removeParent()
+	public GameRectangle popParent()
 	{
-		this.parent = null;
+		GameRectangle parent = this.parent;
+		this.parent.removeAsParent();
+		return parent;
 	}
 }

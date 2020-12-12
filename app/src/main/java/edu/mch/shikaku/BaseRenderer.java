@@ -1,5 +1,6 @@
 package edu.mch.shikaku;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -7,12 +8,14 @@ import java.util.Objects;
 
 public class BaseRenderer extends Renderer
 {
+	private Paint currentPaint;
 	private final CircularPaintList paintList;
 
 	protected BaseRenderer(Context context, HashMap<Integer, GameField> fieldsByPosition, int dimX, int dimY, int height, int width)
 	{
 		super(dimX, dimY, height, width);
 		this.paintList = new CircularPaintList(context);
+		this.currentPaint = this.paintList.next();
 
 		int lengthX = (int) (this.dimX + 1);
 
@@ -35,9 +38,11 @@ public class BaseRenderer extends Renderer
 	public void draw(LinkedHashSet<GameRectangle> gameRectangles)
 	{
 		this.clear();
-		this.paintList.reset();
 
 		for(GameRectangle rectangle : gameRectangles)
-			rectangle.drawTo(this.canvas, this.paintList.next());
+		{
+			if (rectangle.drawAsParent(this.canvas, this.currentPaint))
+				this.currentPaint = this.paintList.next();
+		}
 	}
 }

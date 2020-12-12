@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 public class GameView extends View
 {
 	private boolean changed = true;
+	private GameActivity host;
 	private ViewableLevel level;
 	private boolean ready = false;
 
@@ -24,9 +25,19 @@ public class GameView extends View
 		super(context, attrs, defStyleAttr);
 	}
 
-	public void init(ViewableLevel level)
+	public void disableControl()
 	{
+		this.level.setControlEnabled(false);
+	}
+	public void init(GameActivity host, ViewableLevel level)
+	{
+		this.host = host;
 		this.level = level;
+
+		if (this.ready)
+			this.level.onSizeChanged(this.getHeight(), this.getWidth());
+
+		this.update();
 	}
 	@Override
 	protected void onDraw(Canvas canvas)
@@ -40,6 +51,10 @@ public class GameView extends View
 		}
 
 		this.level.renderTo(canvas);
+	}
+	public void onLevelCompleted()
+	{
+		this.host.onGameCompleted();
 	}
 	@Override
 	protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight)

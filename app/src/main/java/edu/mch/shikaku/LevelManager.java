@@ -9,6 +9,7 @@ public class LevelManager
 {
 	private static LevelManager instance;
 
+	private int currentIndex;
 	private final Database database;
 	public final ArrayList<LevelItem> levelItems;
 
@@ -21,6 +22,7 @@ public class LevelManager
 
 	public LevelManager(Context context)
 	{
+		this.currentIndex = 0;
 		this.database = new Database(context);
 		this.levelItems = this.database.selectAllLevelsItems();
 	}
@@ -30,9 +32,16 @@ public class LevelManager
 		if (this.levelItems.isEmpty())
 			throw new NoLevelsException();
 	}
-	public LevelItem getLevel(int index)
+	public void chooseLevel(int index)
 	{
-		return this.levelItems.get(index);
+		this.currentIndex = index;
+	}
+	public PlayableLevel nextLevel(GameView gameView)
+	{
+		if (this.currentIndex == this.levelItems.size())
+			this.currentIndex = 0;
+
+		return this.levelItems.get(this.currentIndex++).toPlayableLevel(gameView);
 	}
 	public int getRandomLevelIndex() throws NoLevelsException
 	{

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 public class GameRectangle
 {
+	private Paint paint;
 	private final GameField[] gameFields;
 
 	public GameRectangle(int dimX, HashMap<Integer, GameField> fieldsByPosition, int left, int top, int right, int bottom)
@@ -33,32 +34,66 @@ public class GameRectangle
 
 	public boolean doesOverlap()
 	{
+		for(GameField field : this.gameFields)
+			if (field.isOccupied())
+				return true;
+
+		return false;
+	}
+	public void drawAsGesture(Canvas canvas, Paint paint)
+	{
+		for(GameField field : this.gameFields)
+			field.drawTo(canvas, paint);
+	}
+	public boolean drawAsParent(Canvas canvas, Paint paint)
+	{
+		boolean paintApplied = false;
+
+		if (this.paint == null)
+		{
+			paintApplied = true;
+			this.paint = paint;
+		}
+
+		for(GameField field : this.gameFields)
+			field.drawTo(canvas, this.paint);
+
+		return paintApplied;
+	}
+	public boolean isCorrect()
+	{
 		boolean valueFound = false;
 
 		for(GameField field : this.gameFields)
 		{
 			if (field.isOccupied())
-				return true;
+				return false;
 
 			if (field.value == 0)
 				continue;
 
 			if (valueFound || field.value != this.gameFields.length)
-				return true;
+				return false;
 
 			valueFound = true;
 		}
 
-		return false;
+		return valueFound;
 	}
-	public void drawTo(Canvas canvas, Paint paint)
+	public GameRectangle popOverlapping()
 	{
-		for(GameField field : this.gameFields)
-			field.drawTo(canvas, paint);
+		return this.gameFields[0].popParent();
 	}
 	public void setAsParent()
 	{
 		for(GameField field : this.gameFields)
 			field.setParent(this);
+	}
+	public void removeAsParent()
+	{
+		this.paint = null;
+
+		for(GameField field : this.gameFields)
+			field.setParent(null);
 	}
 }

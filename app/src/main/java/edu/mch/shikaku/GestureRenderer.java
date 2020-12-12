@@ -23,7 +23,6 @@ public class GestureRenderer extends Renderer
 	public void draw(GameRectangle rectangle)
 	{
 		this.clear();
-
-		rectangle.drawTo(this.canvas, rectangle.doesOverlap() ? this.overlapPaint : this.okPaint);
+		rectangle.drawAsGesture(this.canvas, rectangle.isCorrect() ? this.okPaint : this.overlapPaint);
 	}
 }

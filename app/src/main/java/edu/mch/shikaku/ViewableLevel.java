@@ -1,4 +1,5 @@
 package edu.mch.shikaku;
+import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
 public abstract class ViewableLevel extends Level
@@ -22,9 +23,17 @@ public abstract class ViewableLevel extends Level
 	{
 		this.topRenderer = new TopRenderer(this.dimX, this.dimY, height, width);
 	}
-	public abstract void renderTo(Canvas canvas);
+	@SuppressLint("ClickableViewAccessibility")
 	public void setControlEnabled(boolean controlEnabled)
 	{
-		this.controlEnabled = controlEnabled;
+		if (controlEnabled)
+			this.controlEnabled = true;
+		else
+		{
+			this.controlEnabled = false;
+			this.gameView.setOnTouchListener(null);
+		}
 	}
+
+	public abstract void renderTo(Canvas canvas);
 }
