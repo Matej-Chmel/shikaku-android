@@ -11,7 +11,8 @@ public class GameActivity extends AppCompatActivity
 		this.setContentView(R.layout.activity_game);
 
 		GameView gameView = this.findViewById(R.id.gameView);
-		gameView.init(LevelManager.getInstance(this)
-				.getLevel(this.getIntent().getIntExtra(IntentExtras.LEVEL_INDEX, 0)));
+		LevelItem levelItem = LevelManager.getInstance(this)
+				.getLevel(this.getIntent().getIntExtra(IntentExtras.LEVEL_INDEX, 0));
+		gameView.init(levelItem.toPlayableLevel(gameView));
 	}
 }

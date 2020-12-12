@@ -34,8 +34,8 @@ public class LevelHolder
 					LevelHolder.IMAGE_DIMENSION,
 					LevelHolder.IMAGE_DIMENSION
 			);
-			renderer.renderBackground();
-			renderer.render(item);
+			renderer.renderBackground(renderer.canvas);
+			renderer.draw(item);
 			item.bitmap = renderer.getBitmap();
 		}
 

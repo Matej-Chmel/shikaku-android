@@ -1,18 +1,19 @@
 package edu.mch.shikaku;
 import android.content.ContentValues;
+import android.graphics.Canvas;
 
-public class LevelEditor extends Level
+public class EditableLevel extends ViewableLevel implements Clickable
 {
 	private LevelItem levelItem;
 
-	public LevelEditor(int[][] board, LevelItem levelItem)
+	public EditableLevel(int[][] board, GameView gameView, LevelItem levelItem)
 	{
-		super(board, levelItem.dimX, levelItem.dimY, levelItem.id);
+		super(board, levelItem.dimX, levelItem.dimY, gameView, levelItem.id);
 		this.levelItem = levelItem;
 	}
-	public LevelEditor(int dimX, int dimY)
+	public EditableLevel(int dimX, int dimY, GameView gameView)
 	{
-		super(new int[dimX][dimY], dimX, dimY, 0);
+		super(new int[dimX][dimY], dimX, dimY, gameView, 0);
 		this.clear();
 	}
 
@@ -43,6 +44,17 @@ public class LevelEditor extends Level
 	public boolean itemExists()
 	{
 		return this.levelItem != null;
+	}
+	@Override
+	public void onClick(float x, float y)
+	{
+
+	}
+	@Override
+	public void renderTo(Canvas canvas)
+	{
+		this.topRenderer.renderBackground(canvas);
+		this.topRenderer.renderTo(canvas);
 	}
 	public void resize(int newDimX, int newDimY)
 	{

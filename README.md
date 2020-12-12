@@ -2,10 +2,11 @@
 Projekt do předmětu Tvorba aplikací pro mobilní zařízení II (TAMZ II).
 
 ## Vlastnosti
+- [x] Ukládání hlavolamů v SQLite databázi
 - [x] Výběr hlavolamu z ListView
-- [ ] Vykreslování pomocí Canvas
-- [ ] Ovládání gesty
-- [ ] Tvorba vlastních hlavolamů uživatelem, ukládání v SQLite databázi
+- [x] Vykreslování pomocí Canvas
+- [x] Ovládání gesty
+- [ ] Tvorba vlastních hlavolamů uživatelem
 - [ ] Generování zadání hlavolamu
 - [ ] Zvukové efekty
 - [ ] Ukládání nejlepších časů do SQLite databáze

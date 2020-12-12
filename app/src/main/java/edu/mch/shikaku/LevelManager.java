@@ -100,7 +100,7 @@ public class LevelManager
 
 		this.database.insertLevels(this.levelItems);
 	}
-	public void saveLevel(LevelEditor editor) throws DatabaseException
+	public void saveLevel(EditableLevel editor) throws DatabaseException
 	{
 		if (editor.itemExists())
 		{

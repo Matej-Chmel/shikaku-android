@@ -19,6 +19,16 @@ public class LevelItem extends Level
 		this.difficulty = Difficulty.fromInteger(cursor.getInt(cursor.getColumnIndex(LevelItem.DIFFICULTY)));
 	}
 
+	private int[][] createBoardCopy()
+	{
+		int[][] newBoard = new int[this.dimX][this.dimY];
+
+		for (int y = 0; y < this.dimY; y++)
+			for (int x = 0; x < this.dimX; x++)
+				newBoard[x][y] = this.getFieldValue(x, y);
+
+		return newBoard;
+	}
 	public ContentValues getContentValues()
 	{
 		ContentValues content = super.getContentValues();
@@ -29,15 +39,19 @@ public class LevelItem extends Level
 	{
 		return difficulty;
 	}
-	public LevelEditor toLevelEditor()
+	public EditableLevel toEditableLevel(GameView view)
 	{
-		int[][] newBoard = new int[this.dimX][this.dimY];
-
-		for (int y = 0; y < this.dimY; y++)
-			for (int x = 0; x < this.dimX; x++)
-				newBoard[x][y] = this.getField(x, y);
-
-		return new LevelEditor(newBoard, this);
+		return new EditableLevel(this.createBoardCopy(), view, this);
+	}
+	public PlayableLevel toPlayableLevel(GameView view)
+	{
+		return new PlayableLevel(
+				this.createBoardCopy(),
+				this.getDimX(),
+				this.getDimY(),
+				view,
+				this.getId()
+		);
 	}
 	public String toTextDisplay()
 	{
@@ -50,11 +64,11 @@ public class LevelItem extends Level
 
 			for (int x = 0; x < lastX; x++)
 			{
-				builder.append(this.getField(x, y));
+				builder.append(this.getFieldValue(x, y));
 				builder.append(' ');
 			}
 
-			builder.append(this.getField(lastX, y));
+			builder.append(this.getFieldValue(lastX, y));
 			builder.append('\n');
 		}
 

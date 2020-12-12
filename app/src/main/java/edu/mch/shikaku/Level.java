@@ -54,7 +54,7 @@ public abstract class Level
 	{
 		return dimY;
 	}
-	public int getField(int x, int y)
+	public int getFieldValue(int x, int y)
 	{
 		return this.board[x][y];
 	}

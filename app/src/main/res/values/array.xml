@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<array name="rectangle_colors">
+		<item>@color/blue_light</item>
+		<item>@color/green_pistachio</item>
+		<item>@color/orange_soft</item>
+		<item>@color/red_mild</item>
+		<item>@color/violet_light</item>
+		<item>@color/yellow_light</item>
+	</array>
+</resources>

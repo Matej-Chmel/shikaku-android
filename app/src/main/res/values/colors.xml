@@ -3,6 +3,7 @@
 <resources>
 
 	<color name="black">#ff000000</color>
+	<color name="blue_light">#ff7edbf7</color>
 	<color name="green_dark">#ff0d9116</color>
 	<color name="green_night">#ff096b0f</color>
 	<color name="green_pistachio">#ffade099</color>
@@ -11,6 +12,7 @@
 	<color name="orange_soft">#ffe6bd5c</color>
 	<color name="red_dangerous">#ffeb3636</color>
 	<color name="red_mild">#ffed806b</color>
+	<color name="violet_light">#ffd9adf0</color>
 	<color name="white">#ffffffff</color>
 	<color name="yellow_light">#ffd6d48b</color>
 	<color name="yellow_solid">#ffe6e25c</color>
@@ -20,5 +22,8 @@
 	<color name="difficulty_medium">@color/yellow_solid</color>
 	<color name="difficulty_hard">@color/red_mild</color>
 	<color name="difficulty_extreme">@color/red_dangerous</color>
+
+	<color name="gesture_ok">@color/green_dark</color>
+	<color name="gesture_overlaps">@color/red_dangerous</color>
 
 </resources>

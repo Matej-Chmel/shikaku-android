@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 
 public abstract class Renderer
 {
@@ -13,11 +12,12 @@ public abstract class Renderer
 
 	protected final Bitmap bitmap;
 	protected final Canvas canvas;
-	protected final Paint cleanerPaint;
 	protected final Paint defaultPaint;
 	protected final float dimX;
 	protected final float dimY;
 	protected final float height;
+	protected final float moveHeight;
+	protected final float moveWidth;
 	protected final float tileHeight;
 	protected final float tileWidth;
 	protected final float width;
@@ -26,24 +26,28 @@ public abstract class Renderer
 	{
 		this.bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 		this.canvas = new Canvas(this.bitmap);
-		this.cleanerPaint = new Paint();
-		this.cleanerPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
 		this.defaultPaint = new Paint();
 		this.dimX = dimX;
 		this.dimY = dimY;
 		this.height = height;
 		this.tileHeight = (height - (dimY + 1) * Renderer.LINE_WIDTH) / dimY;
 		this.tileWidth = (width - (dimX + 1) * Renderer.LINE_WIDTH) / dimX;
+		this.moveHeight = Renderer.LINE_WIDTH + this.tileHeight;
+		this.moveWidth = Renderer.LINE_WIDTH + this.tileWidth;
 		this.width = width;
 	}
 
+	protected void clear()
+	{
+		this.canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+	}
 	public Bitmap getBitmap()
 	{
 		return this.bitmap.copy(this.bitmap.getConfig(), true);
 	}
-	public void renderBackground()
+	public void renderBackground(Canvas c)
 	{
-		this.canvas.drawColor(Color.WHITE);
+		c.drawColor(Color.WHITE);
 	}
 	public void renderTo(Canvas c)
 	{
