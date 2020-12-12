@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 
 public class EditorPalette extends CustomView implements Clickable
 {
@@ -12,6 +13,7 @@ public class EditorPalette extends CustomView implements Clickable
 	public static final int LAST_TILE_INDEX = EditorPalette.TILES_COUNT - 1;
 
 	private int chosenTileIndex = 0;
+	private SwitchCompat switchEraser;
 	private EditorPaletteRenderer renderer;
 
 	public EditorPalette(Context context)
@@ -26,9 +28,15 @@ public class EditorPalette extends CustomView implements Clickable
 	{
 		super(context, attrs, defStyleAttr);
 	}
+	public void init(SwitchCompat switchEraser)
+	{
+		this.switchEraser = switchEraser;
+	}
 
 	public int getChosenNumber()
 	{
+		if (this.switchEraser.isChecked())
+			return 0;
 		if (this.chosenTileIndex == EditorPalette.LAST_TILE_INDEX)
 			return -1;
 		return this.chosenTileIndex + 2;
@@ -36,6 +44,7 @@ public class EditorPalette extends CustomView implements Clickable
 	@Override
 	public void onClick(float x, float y)
 	{
+		this.switchEraser.setChecked(false);
 		this.chosenTileIndex = (int) (x / this.renderer.tileWidth);
 		this.update();
 	}

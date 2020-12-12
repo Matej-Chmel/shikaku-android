@@ -15,5 +15,7 @@
 	<string name="button_nextLevel_text">Další hlavolam</string>
 	<string name="floatingButton_createLevel_contentDescription">Vytvořit nový hlavolam.</string>
 	<string name="floatingButton_saveLevel_contentDescription">Uložit hlavolam.</string>
+	<string name="switch_eraser_text">Guma</string>
+	<string name="button_clearEditor">Vymazat vše</string>
 
 </resources>

@@ -62,4 +62,32 @@
 		app:layout_constraintVertical_bias="0.703"
 		app:srcCompat="@android:drawable/ic_media_play" />
 
+	<androidx.appcompat.widget.SwitchCompat
+		android:id="@+id/switch_eraser"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/switch_eraser_text"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.049"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/gameView"
+		app:layout_constraintVertical_bias="0.807" />
+
+	<Button
+		android:id="@+id/button_clearEditor"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onButtonClearEditor"
+		android:text="@string/button_clearEditor"
+		android:textAlignment="center"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.235"
+		app:layout_constraintStart_toEndOf="@+id/switch_eraser"
+		app:layout_constraintTop_toBottomOf="@+id/gameView"
+		app:layout_constraintVertical_bias="0.806" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

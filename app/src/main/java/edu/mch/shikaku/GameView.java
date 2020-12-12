@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 public class GameView extends CustomView
 {
 	private GameActivity host;
-	private ViewableLevel level;
+	protected ViewableLevel level;
 
 	public GameView(Context context)
 	{

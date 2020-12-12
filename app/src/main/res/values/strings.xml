@@ -16,5 +16,7 @@
 	<string name="button_nextLevel_text">Next level</string>
 	<string name="floatingButton_createLevel_contentDescription">Create new level.</string>
 	<string name="floatingButton_saveLevel_contentDescription">Save level.</string>
+	<string name="switch_eraser_text">Eraser</string>
+	<string name="button_clearEditor">Clear all</string>
 
 </resources>
