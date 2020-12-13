@@ -38,6 +38,7 @@ public class GameActivity extends AppCompatActivity
 	private TextView textViewStopWatch;
 
 	private EditableLevel editableLevel;
+	private boolean launchedFromMain;
 	private LevelItem levelItem;
 	private StopWatch stopWatch;
 	private StopWatchDisplayer stopWatchDisplayer;
@@ -72,12 +73,14 @@ public class GameActivity extends AppCompatActivity
 
 		if (intent.getBooleanExtra(IntentExtras.LAUNCH_EDITOR, false))
 		{
-			this.editableLevel = levelIndex == -1 ? new EditableLevel(
-					GameActivity.DEFAULT_LEVEL_DIMENSION,
+			this.editableLevel = levelIndex == -1 ? new EditableLevel(GameActivity.DEFAULT_LEVEL_DIMENSION,
 					GameActivity.DEFAULT_LEVEL_DIMENSION,
 					this.gameView,
 					this.editorPalette
 			) : this.levelManager.getEditableLevel(this.gameView, this.editorPalette, levelIndex);
+			this.launchedFromMain = intent.getBooleanExtra(IntentExtras.LAUNCH_EDITOR_FROM_MAIN,
+					false
+			);
 			this.startEditor();
 		}
 		else
@@ -113,8 +116,7 @@ public class GameActivity extends AppCompatActivity
 	}
 	public void onEditorPaletteSelectExtraNumber()
 	{
-		this.startActivityForResult(
-				new Intent(this, ChooseNumberActivity.class),
+		this.startActivityForResult(new Intent(this, ChooseNumberActivity.class),
 				IntentExtras.RESULT_CODE_FIELD_VALUE
 		);
 	}
@@ -156,6 +158,8 @@ public class GameActivity extends AppCompatActivity
 				Toast.makeText(this, e.getMessage(this.getResources()), Toast.LENGTH_LONG).show();
 			}
 
+			if (this.launchedFromMain)
+				this.startActivity(new Intent(this, ListActivity.class));
 			this.finish();
 			return;
 		}

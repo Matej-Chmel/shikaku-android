@@ -29,13 +29,15 @@ public class MainActivity extends AppCompatActivity
 			preferences.onFirstLaunchSuccess();
 	}
 
+	public void onButtonCreateLevel(View view)
+	{
+		this.startGameActivity(-1, true);
+	}
 	public void onButtonRandomLevel(View view)
 	{
 		try
 		{
-			Intent intent = new Intent(this, GameActivity.class);
-			intent.putExtra(IntentExtras.LEVEL_INDEX, this.levelManager.getRandomLevelIndex());
-			this.startActivity(intent);
+			this.startGameActivity(this.levelManager.getRandomLevelIndex(), false);
 		}
 		catch (NoLevelsException e)
 		{
@@ -67,6 +69,19 @@ public class MainActivity extends AppCompatActivity
 			this.startActivity(new Intent(this, AboutActivity.class));
 
 		return true;
+	}
+	private void startGameActivity(int levelIndex, boolean launchEditor)
+	{
+		Intent intent = new Intent(this, GameActivity.class);
+		intent.putExtra(IntentExtras.LEVEL_INDEX, levelIndex);
+
+		if (launchEditor)
+		{
+			intent.putExtra(IntentExtras.LAUNCH_EDITOR, true);
+			intent.putExtra(IntentExtras.LAUNCH_EDITOR_FROM_MAIN, true);
+		}
+
+		this.startActivity(intent);
 	}
 	private void toastNoLevels(NoLevelsException e)
 	{

@@ -13,7 +13,7 @@
 	<string name="textView_levelDimensions_placeholder" translatable="false">5x5</string>
 	<string name="imageView_levelPreview_contentDescription">Level preview.</string>
 	<string name="button_nextLevel_text">Next level</string>
-	<string name="floatingButton_createLevel_contentDescription">Create new level.</string>
+	<string name="floatingButton_list_createLevel_contentDescription">Create new level.</string>
 	<string name="floatingButton_saveLevel_contentDescription">Save level.</string>
 	<string name="switch_eraser_text">Eraser</string>
 	<string name="button_clearEditor">Clear all</string>
@@ -27,5 +27,6 @@
 	<string name="confirm">OK</string>
 	<string name="toast_fieldValue_tooHigh">Value cannot be higher than %d.</string>
 	<string name="toast_fieldValue_one">Value cannot be 1.</string>
+	<string name="button_main_createLevel_text">Create level</string>
 
 </resources>

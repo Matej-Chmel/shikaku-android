@@ -10,31 +10,46 @@
 	<Button
 		android:id="@+id/button_randomLevel"
 		android:layout_width="wrap_content"
-		android:layout_height="164dp"
+		android:layout_height="@dimen/main_buttons_height"
 		android:onClick="onButtonRandomLevel"
 		android:text="@string/button_randomLevel_text"
 		android:textAlignment="center"
-		android:textSize="24sp"
+		android:textSize="@dimen/main_buttons_textSize"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.166" />
+		app:layout_constraintVertical_bias="0.036" />
 
 	<Button
 		android:id="@+id/button_selectLevel"
 		android:layout_width="wrap_content"
-		android:layout_height="164dp"
+		android:layout_height="@dimen/main_buttons_height"
 		android:onClick="onButtonSelectLevel"
 		android:text="@string/button_selectLevel_text"
 		android:textAlignment="center"
-		android:textSize="24sp"
+		android:textSize="@dimen/main_buttons_textSize"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="1.0"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/button_randomLevel"
-		app:layout_constraintVertical_bias="0.455" />
+		app:layout_constraintVertical_bias="0.153" />
+
+	<Button
+		android:id="@+id/button_main_createLevel"
+		android:layout_width="wrap_content"
+		android:layout_height="@dimen/main_buttons_height"
+		android:onClick="onButtonCreateLevel"
+		android:text="@string/button_main_createLevel_text"
+		android:textAlignment="center"
+		android:textSize="@dimen/main_buttons_textSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_selectLevel"
+		app:layout_constraintVertical_bias="0.714" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<dimen name="about_textViews_textSize">24sp</dimen>
+	<dimen name="listItem_level_textSize">36sp</dimen>
+	<dimen name="main_buttons_height">164dp</dimen>
+	<dimen name="main_buttons_textSize">24sp</dimen>
+</resources>
