@@ -1,7 +1,5 @@
 <resources>
 
-	<string name="app_name">Shikaku</string>
-
 	<string name="button_randomLevel_text">Náhodný hlavolam</string>
 	<string name="button_selectLevel_text">Výběr hlavolamu</string>
 	<string name="menuItem_about_text">O aplikaci</string>
@@ -23,6 +21,7 @@
 	<string name="stopWatch_notAttempted">Nedokončen</string>
 	<string name="editNumber_fieldValue_hint">Zadejte hodnotu pole.</string>
 	<string name="confirm">Hotovo</string>
-	<string name="toast_fieldValueTooHigh">Hodnota nemůže překročit %d.</string>
+	<string name="toast_fieldValue_tooHigh">Hodnota nemůže překročit %d.</string>
+	<string name="toast_fieldValue_one">Hodnota 1 není povolena.</string>
 
 </resources>

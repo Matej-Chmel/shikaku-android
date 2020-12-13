@@ -5,7 +5,7 @@ import edu.mch.shikaku.activities.GameActivity;
 
 public class StopWatch
 {
-	public static final long PERIOD = 1000;
+	public static final long PERIOD = 100;
 
 	private final Handler handler;
 	private final GameActivity host;

@@ -1,5 +1,6 @@
 package edu.mch.shikaku.activities;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import edu.mch.shikaku.level.Level;
 public class ChooseNumberActivity extends AppCompatActivity
 {
 	private EditText editNumberFieldValue;
+	private String toastFieldValueOneText;
 	private String toastFieldValueTooHighText;
 
 	@Override
@@ -19,14 +21,24 @@ public class ChooseNumberActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_choose_number);
 
+		Resources resources = this.getResources();
+
 		this.editNumberFieldValue = this.findViewById(R.id.editNumber_fieldValue);
-		this.toastFieldValueTooHighText = String.format(this.getResources()
-				.getString(R.string.toast_fieldValueTooHigh), Level.MAXIMUM_FIELD_VALUE);
+		this.toastFieldValueTooHighText = String.format(resources.getString(R.string.toast_fieldValue_tooHigh),
+				Level.MAXIMUM_FIELD_VALUE
+		);
+		this.toastFieldValueOneText = resources.getString(R.string.toast_fieldValue_one);
 	}
 
 	public void onButtonFieldValue(View view)
 	{
 		int value = Integer.parseInt(this.editNumberFieldValue.getText().toString());
+
+		if (value == 1)
+		{
+			Toast.makeText(this, this.toastFieldValueOneText, Toast.LENGTH_SHORT).show();
+			return;
+		}
 
 		if (value > Level.MAXIMUM_FIELD_VALUE)
 		{

@@ -1,7 +1,6 @@
 <resources>
 
-	<string name="app_name">Shikaku</string>
-
+	<string name="app_name" translatable="false">Shikaku</string>
 	<string name="button_randomLevel_text">Random level</string>
 	<string name="button_selectLevel_text">Select level</string>
 	<string name="menuItem_about_text">About this app</string>
@@ -21,11 +20,12 @@
 	<string name="floatingButton_backToEditor_contentDescription">Back to editor.</string>
 	<string name="menuItem_resetLevels" translatable="false">Reset</string>
 	<string name="toast_saveLevel">To save your level, you must complete it first.</string>
-	<string name="stopWatch_placeholder" translatable="false">0 s</string>
+	<string name="stopWatch_placeholder" translatable="false">0.0 s</string>
 	<string name="toast_newBestTime">You beat the record!</string>
 	<string name="stopWatch_notAttempted">Not attempted</string>
 	<string name="editNumber_fieldValue_hint">Enter field value.</string>
 	<string name="confirm">OK</string>
-	<string name="toast_fieldValueTooHigh">Value cannot be higher than %d.</string>
+	<string name="toast_fieldValue_tooHigh">Value cannot be higher than %d.</string>
+	<string name="toast_fieldValue_one">Value cannot be 1.</string>
 
 </resources>

@@ -1,5 +1,4 @@
 package edu.mch.shikaku.activities;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -19,6 +18,7 @@ import edu.mch.shikaku.level.EditableLevel;
 import edu.mch.shikaku.level.LevelItem;
 import edu.mch.shikaku.level.LevelManager;
 import edu.mch.shikaku.stopwatch.StopWatch;
+import edu.mch.shikaku.stopwatch.StopWatchDisplayer;
 import edu.mch.shikaku.storage.DatabaseException;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
@@ -40,6 +40,7 @@ public class GameActivity extends AppCompatActivity
 	private EditableLevel editableLevel;
 	private LevelItem levelItem;
 	private StopWatch stopWatch;
+	private StopWatchDisplayer stopWatchDisplayer;
 	private boolean testGameInProgress;
 	private String toastNewBestTimeText;
 	private String toastSaveLevelText;
@@ -65,12 +66,14 @@ public class GameActivity extends AppCompatActivity
 		int levelIndex = intent.getIntExtra(IntentExtras.LEVEL_INDEX, 0);
 
 		this.stopWatch = new StopWatch(new Handler(Looper.getMainLooper()), this);
+		this.stopWatchDisplayer = StopWatchDisplayer.getInstance(this);
 		this.toastNewBestTimeText = resources.getString(R.string.toast_newBestTime);
 		this.toastSaveLevelText = resources.getString(R.string.toast_saveLevel);
 
 		if (intent.getBooleanExtra(IntentExtras.LAUNCH_EDITOR, false))
 		{
-			this.editableLevel = levelIndex == -1 ? new EditableLevel(GameActivity.DEFAULT_LEVEL_DIMENSION,
+			this.editableLevel = levelIndex == -1 ? new EditableLevel(
+					GameActivity.DEFAULT_LEVEL_DIMENSION,
 					GameActivity.DEFAULT_LEVEL_DIMENSION,
 					this.gameView,
 					this.editorPalette
@@ -160,10 +163,9 @@ public class GameActivity extends AppCompatActivity
 		this.gameView.disableControl();
 		this.buttonNextLevel.setVisibility(View.VISIBLE);
 	}
-	@SuppressLint("DefaultLocale")
 	public void onStopWatchUpdate(long milliseconds)
 	{
-		this.textViewStopWatch.setText(String.format("%d s", milliseconds / 1000));
+		this.stopWatchDisplayer.displayTo(this.textViewStopWatch, milliseconds);
 	}
 	private void startEditor()
 	{
