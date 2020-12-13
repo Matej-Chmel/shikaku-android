@@ -1,4 +1,4 @@
-package edu.mch.shikaku.level;
+package edu.mch.shikaku.levels;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import edu.mch.shikaku.renderers.TopRenderer;

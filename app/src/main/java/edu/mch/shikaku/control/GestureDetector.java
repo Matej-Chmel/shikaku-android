@@ -2,7 +2,7 @@ package edu.mch.shikaku.control;
 import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
-import edu.mch.shikaku.level.PlayableLevel;
+import edu.mch.shikaku.levels.PlayableLevel;
 
 public class GestureDetector implements View.OnTouchListener
 {

@@ -1,8 +1,8 @@
 package edu.mch.shikaku.renderers;
 import android.graphics.Color;
 import android.graphics.Paint;
-import edu.mch.shikaku.level.Level;
-import edu.mch.shikaku.level.LevelItem;
+import edu.mch.shikaku.levels.Level;
+import edu.mch.shikaku.levels.LevelItem;
 
 public class TopRenderer extends LevelRenderer
 {

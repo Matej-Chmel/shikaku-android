@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
-import edu.mch.shikaku.level.Level;
+import edu.mch.shikaku.levels.Level;
 
 public class ChooseNumberActivity extends AppCompatActivity
 {

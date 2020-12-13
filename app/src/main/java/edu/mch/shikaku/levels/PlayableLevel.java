@@ -1,4 +1,4 @@
-package edu.mch.shikaku.level;
+package edu.mch.shikaku.levels;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -125,6 +125,13 @@ public class PlayableLevel extends ViewableLevel
 					this.baseRenderer.getMoveHeight(),
 					this.baseRenderer.getMoveWidth()
 			));
+	}
+	public void restart()
+	{
+		for (GameRectangle rectangle : this.gameRectangles)
+			rectangle.removeAsParent();
+
+		this.gameRectangles.clear();
 	}
 	@Override
 	public void renderTo(Canvas canvas)

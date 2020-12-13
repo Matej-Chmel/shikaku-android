@@ -4,7 +4,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<item
-		android:id="@+id/menuItem_reset"
-		android:title="@string/menuItem_resetLevels" />
+		android:id="@+id/menuItem_restart"
+		android:title="@string/menuItem_resetLevels_title" />
 
 </menu>

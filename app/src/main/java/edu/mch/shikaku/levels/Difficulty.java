@@ -1,4 +1,4 @@
-package edu.mch.shikaku.level;
+package edu.mch.shikaku.levels;
 import java.util.EnumSet;
 import java.util.HashMap;
 import edu.mch.shikaku.R;

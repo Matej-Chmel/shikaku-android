@@ -4,8 +4,9 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 import edu.mch.shikaku.activities.GameActivity;
-import edu.mch.shikaku.level.EditableLevel;
-import edu.mch.shikaku.level.ViewableLevel;
+import edu.mch.shikaku.levels.EditableLevel;
+import edu.mch.shikaku.levels.PlayableLevel;
+import edu.mch.shikaku.levels.ViewableLevel;
 
 public class GameView extends CustomView
 {
@@ -28,10 +29,11 @@ public class GameView extends CustomView
 	public void clearLevel()
 	{
 		if (this.level instanceof EditableLevel)
-		{
 			((EditableLevel) this.level).clear();
-			this.update();
-		}
+		else if (this.level instanceof PlayableLevel)
+			((PlayableLevel) this.level).restart();
+
+		this.update();
 	}
 	public void disableControl()
 	{

@@ -3,7 +3,7 @@
 	<string name="app_name" translatable="false">Shikaku</string>
 	<string name="button_randomLevel_text">Random level</string>
 	<string name="button_selectLevel_text">Select level</string>
-	<string name="menuItem_about_text">About this app</string>
+	<string name="menuItem_about_title">About this app</string>
 	<string name="textView_author_text">Created by Matěj Chmel</string>
 	<string name="textView_github_text">Source code is available at GitHub.</string>
 	<string name="imageView_github_contentDescription">View code on GitHub.</string>
@@ -18,7 +18,7 @@
 	<string name="switch_eraser_text">Eraser</string>
 	<string name="button_clearEditor">Clear all</string>
 	<string name="floatingButton_backToEditor_contentDescription">Back to editor.</string>
-	<string name="menuItem_resetLevels" translatable="false">Reset</string>
+	<string name="menuItem_resetLevels_title">Reset to defaults</string>
 	<string name="toast_saveLevel">To save your level, you must complete it first.</string>
 	<string name="stopWatch_placeholder" translatable="false">0.0 s</string>
 	<string name="toast_newBestTime">You beat the record!</string>
@@ -28,5 +28,7 @@
 	<string name="toast_fieldValue_tooHigh">Value cannot be higher than %d.</string>
 	<string name="toast_fieldValue_one">Value cannot be 1.</string>
 	<string name="button_main_createLevel_text">Create level</string>
+	<string name="menuItem_restart_title" translatable="false">Restart</string>
+	<string name="menuItem_resize_title">Resize</string>
 
 </resources>

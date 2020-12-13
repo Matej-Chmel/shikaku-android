@@ -5,18 +5,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import edu.mch.shikaku.R;
-import edu.mch.shikaku.level.EditableLevel;
-import edu.mch.shikaku.level.LevelItem;
-import edu.mch.shikaku.level.LevelManager;
+import edu.mch.shikaku.levels.EditableLevel;
+import edu.mch.shikaku.levels.LevelItem;
+import edu.mch.shikaku.levels.LevelManager;
 import edu.mch.shikaku.stopwatch.StopWatch;
 import edu.mch.shikaku.stopwatch.StopWatchDisplayer;
 import edu.mch.shikaku.storage.DatabaseException;
@@ -114,6 +117,18 @@ public class GameActivity extends AppCompatActivity
 		this.buttonNextLevel.setVisibility(View.GONE);
 		this.loadNextLevel();
 	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		this.getMenuInflater().inflate(R.menu.menu_game, menu);
+
+		if (this.editableLevel == null || this.testGameInProgress)
+			menu.findItem(R.id.menuItem_resize).setVisible(false);
+		else
+			menu.findItem(R.id.menuItem_restart).setVisible(false);
+
+		return true;
+	}
 	public void onEditorPaletteSelectExtraNumber()
 	{
 		this.startActivityForResult(new Intent(this, ChooseNumberActivity.class),
@@ -167,6 +182,18 @@ public class GameActivity extends AppCompatActivity
 		this.gameView.disableControl();
 		this.buttonNextLevel.setVisibility(View.VISIBLE);
 	}
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
+	{
+		int id = item.getItemId();
+
+		if (id == R.id.menuItem_restart)
+			this.gameView.clearLevel();
+		else if (id == R.id.menuItem_resize)
+			Toast.makeText(this, "Resize", Toast.LENGTH_SHORT).show();
+
+		return true;
+	}
 	public void onStopWatchUpdate(long milliseconds)
 	{
 		this.stopWatchDisplayer.displayTo(this.textViewStopWatch, milliseconds);
@@ -185,6 +212,7 @@ public class GameActivity extends AppCompatActivity
 		this.gameView.init(this, this.editableLevel);
 
 		this.editableLevel.setControlEnabled(true);
+		this.invalidateOptionsMenu();
 	}
 	private void startTestGame()
 	{
@@ -197,6 +225,7 @@ public class GameActivity extends AppCompatActivity
 		this.switchEraser.setVisibility(View.GONE);
 		this.gameView.init(this, this.editableLevel.toPlayableLevel());
 
+		this.invalidateOptionsMenu();
 		Toast.makeText(this, this.toastSaveLevelText, Toast.LENGTH_LONG).show();
 	}
 }

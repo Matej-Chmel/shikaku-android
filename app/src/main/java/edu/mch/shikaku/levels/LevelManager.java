@@ -1,4 +1,4 @@
-package edu.mch.shikaku.level;
+package edu.mch.shikaku.levels;
 import android.content.Context;
 import android.widget.Toast;
 import java.io.IOException;

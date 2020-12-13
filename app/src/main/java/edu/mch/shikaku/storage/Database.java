@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
-import edu.mch.shikaku.level.Level;
-import edu.mch.shikaku.level.LevelItem;
+import edu.mch.shikaku.levels.Level;
+import edu.mch.shikaku.levels.LevelItem;
 
 public class Database extends SQLiteOpenHelper
 {

@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.control.OnLevelItemClickListener;
 import edu.mch.shikaku.control.OnLevelItemLongClickListener;
-import edu.mch.shikaku.level.LevelAdapter;
-import edu.mch.shikaku.level.LevelManager;
+import edu.mch.shikaku.levels.LevelAdapter;
+import edu.mch.shikaku.levels.LevelManager;
 
 public class ListActivity extends AppCompatActivity
 {
@@ -54,7 +54,7 @@ public class ListActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
-		if (item.getItemId() == R.id.menuItem_reset)
+		if (item.getItemId() == R.id.menuItem_restart)
 		{
 			LevelManager.getInstance(this).resetLevels(this);
 			this.levelAdapter.notifyDataSetChanged();

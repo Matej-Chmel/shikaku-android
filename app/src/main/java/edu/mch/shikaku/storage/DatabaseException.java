@@ -2,7 +2,7 @@ package edu.mch.shikaku.storage;
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import edu.mch.shikaku.R;
-import edu.mch.shikaku.level.Level;
+import edu.mch.shikaku.levels.Level;
 
 public class DatabaseException extends Exception
 {

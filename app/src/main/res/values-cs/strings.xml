@@ -2,7 +2,7 @@
 
 	<string name="button_randomLevel_text">Náhodný hlavolam</string>
 	<string name="button_selectLevel_text">Výběr hlavolamu</string>
-	<string name="menuItem_about_text">O aplikaci</string>
+	<string name="menuItem_about_title">O aplikaci</string>
 	<string name="textView_author_text">Vytvořil Matěj Chmel</string>
 	<string name="textView_github_text">Kód aplikace je dostupný na GitHubu.</string>
 	<string name="imageView_github_contentDescription">Přejít na GitHub.</string>
@@ -24,5 +24,7 @@
 	<string name="toast_fieldValue_tooHigh">Hodnota nemůže překročit %d.</string>
 	<string name="toast_fieldValue_one">Hodnota 1 není povolena.</string>
 	<string name="button_main_createLevel_text">Vytvořit hlavolam</string>
+	<string name="menuItem_resize_title">Zvolit velikost</string>
+	<string name="menuItem_resetLevels_title">Obnovit původní hlavolamy</string>
 
 </resources>

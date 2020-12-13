@@ -8,7 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
-import edu.mch.shikaku.level.LevelManager;
+import edu.mch.shikaku.levels.LevelManager;
 import edu.mch.shikaku.storage.NoLevelsException;
 import edu.mch.shikaku.storage.Preferences;
 
