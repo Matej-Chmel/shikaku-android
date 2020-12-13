@@ -90,15 +90,27 @@ public class GameActivity extends AppCompatActivity
 		{
 			this.levelManager.chooseLevel(levelIndex);
 			this.loadNextLevel();
+			this.stopWatch.start();
 		}
 	}
 
+	private void setGameState(boolean gameInProgress)
+	{
+		if (gameInProgress)
+		{
+			this.buttonNextLevel.setVisibility(View.GONE);
+			this.gameView.setControlEnabled(true);
+			this.textViewStopWatch.setTextColor(Color.BLACK);
+			return;
+		}
+
+		this.buttonNextLevel.setVisibility(View.VISIBLE);
+		this.gameView.setControlEnabled(false);
+	}
 	private void loadNextLevel()
 	{
 		this.levelItem = this.levelManager.nextLevel();
 		this.gameView.init(this, this.levelItem.toPlayableLevel(this.gameView));
-		this.textViewStopWatch.setTextColor(Color.BLACK);
-		this.stopWatch.start();
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent)
@@ -127,8 +139,9 @@ public class GameActivity extends AppCompatActivity
 	}
 	public void onButtonNextLevel(View view)
 	{
-		this.buttonNextLevel.setVisibility(View.GONE);
+		this.setGameState(true);
 		this.loadNextLevel();
+		this.stopWatch.start();
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -193,21 +206,24 @@ public class GameActivity extends AppCompatActivity
 			return;
 		}
 
-		this.gameView.disableControl();
-		this.buttonNextLevel.setVisibility(View.VISIBLE);
+		this.setGameState(false);
 	}
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		int id = item.getItemId();
 
-		if (id == R.id.menuItem_restart)
-			this.gameView.clearLevel();
-		else if (id == R.id.menuItem_resize)
+		if (id == R.id.menuItem_resize)
 			this.startActivityForResult(
 					new Intent(this, ChooseDimensionsActivity.class),
 					IntentExtras.RESULT_CODE_DIMENSIONS
 			);
+		else if (id == R.id.menuItem_restart)
+		{
+			this.gameView.clearLevel();
+			this.setGameState(true);
+			this.stopWatch.start();
+		}
 
 		return true;
 	}

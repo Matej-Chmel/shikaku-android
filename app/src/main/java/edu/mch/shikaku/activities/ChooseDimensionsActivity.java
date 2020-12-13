@@ -31,7 +31,7 @@ public class ChooseDimensionsActivity extends AppCompatActivity
 
 		this.toastNotValidText = resources.getString(R.string.toast_dimension_notValid);
 		this.toastOneTotalSpaceText = resources.getString(R.string.toast_dimension_oneTotalSpace);
-		this.toastTooHighText = String.format(resources.getString(R.string.toast_fieldValue_tooHigh),
+		this.toastTooHighText = String.format(resources.getString(R.string.toast_dimension_tooHigh),
 				Level.MAXIMUM_DIMENSION
 		);
 	}

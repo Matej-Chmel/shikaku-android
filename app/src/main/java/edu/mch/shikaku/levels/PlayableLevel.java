@@ -65,6 +65,17 @@ public class PlayableLevel extends ViewableLevel
 
 		super.draw();
 	}
+	@SuppressLint("ClickableViewAccessibility")
+	private void enabledGestures()
+	{
+		if (this.controlEnabled)
+			this.gameView.setOnTouchListener(new GestureDetector(this.dimX,
+					this.dimY,
+					this,
+					this.baseRenderer.getMoveHeight(),
+					this.baseRenderer.getMoveWidth()
+			));
+	}
 	public void onGestureEnd(int x, int y)
 	{
 		this.gestureActive = false;
@@ -117,14 +128,7 @@ public class PlayableLevel extends ViewableLevel
 		);
 		this.gestureRenderer = new GestureRenderer(context, this.dimX, this.dimY, height, width);
 
-		if (this.controlEnabled)
-			this.gameView.setOnTouchListener(new GestureDetector(
-					this.dimX,
-					this.dimY,
-					this,
-					this.baseRenderer.getMoveHeight(),
-					this.baseRenderer.getMoveWidth()
-			));
+		this.enabledGestures();
 	}
 	public void restart()
 	{
@@ -143,6 +147,12 @@ public class PlayableLevel extends ViewableLevel
 			this.gestureRenderer.renderTo(canvas);
 
 		this.topRenderer.renderTo(canvas);
+	}
+	@Override
+	public void setControlEnabled(boolean controlEnabled)
+	{
+		super.setControlEnabled(controlEnabled);
+		this.enabledGestures();
 	}
 	public void update()
 	{

@@ -35,10 +35,6 @@ public class GameView extends CustomView
 
 		this.update();
 	}
-	public void disableControl()
-	{
-		this.level.setControlEnabled(false);
-	}
 	public void init(GameActivity host, ViewableLevel level)
 	{
 		this.host = host;
@@ -80,5 +76,9 @@ public class GameView extends CustomView
 	{
 		super.onSizeChanged(width, height, oldWidth, oldHeight);
 		this.level.onSizeChanged(height, width);
+	}
+	public void setControlEnabled(boolean enabled)
+	{
+		this.level.setControlEnabled(enabled);
 	}
 }
