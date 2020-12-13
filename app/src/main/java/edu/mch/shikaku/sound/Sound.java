@@ -3,6 +3,10 @@ import android.media.MediaPlayer;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
+/*
+	Objekt zvukového efektu.
+	Každý objekt lze zvlášť vypnout a zapnout.
+*/
 public class Sound
 {
 	private boolean active;

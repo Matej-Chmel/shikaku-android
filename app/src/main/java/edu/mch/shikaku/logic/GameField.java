@@ -3,6 +3,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+/*
+	Objekt pole mřížky.
+
+	Využívá se pouze při řešení hlavolamu.
+	Obsahuje referenci na čtyřúhelník, který jej překrývá.
+	Pomocí této reference lze určit, zda-li je pole překryto či nikoliv.
+*/
 public class GameField
 {
 	private GameRectangle parent;

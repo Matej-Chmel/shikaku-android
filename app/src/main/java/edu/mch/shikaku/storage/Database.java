@@ -10,6 +10,9 @@ import java.util.Collection;
 import edu.mch.shikaku.levels.Level;
 import edu.mch.shikaku.levels.LevelItem;
 
+/*
+	Implementace databáze hlavolamů.
+*/
 public class Database extends SQLiteOpenHelper
 {
 	public static final String DATABASE_NAME = "edu.mch.shikaku.db";

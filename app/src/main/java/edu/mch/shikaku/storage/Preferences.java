@@ -4,6 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import edu.mch.shikaku.sound.Sounds;
 
+/*
+	Singleton spravující SharedPreferences aplikace.
+
+	Ukládá se příznak FIRST_START, který značí zda-li je aplikace spouštěna poprvé.
+	Také se ukládá nastavení zvukových efektů ve formě celého čísla.
+	Nastavení se poté čte pomocí bitových operací ve třídě SoundManager.
+*/
 public class Preferences
 {
 	private static final String FIRST_START = "firstStart";

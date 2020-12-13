@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.levels.Level;
 
+/*
+	Aktivita, pomocí které lze zvolit jinou hodnotu pole při editaci,
+	než ty, které nabízí paleta EditorPalette.
+	Pokaždé spouštěna pomocí startActivityForResult.
+*/
 public class ChooseFieldValueActivity extends AppCompatActivity
 {
 	private EditText editNumberFieldValue;

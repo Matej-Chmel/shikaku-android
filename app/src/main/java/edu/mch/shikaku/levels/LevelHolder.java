@@ -9,6 +9,9 @@ import edu.mch.shikaku.R;
 import edu.mch.shikaku.renderers.TopRenderer;
 import edu.mch.shikaku.stopwatch.StopWatchDisplayer;
 
+/*
+	Vykresluje položku v ListView.
+*/
 public class LevelHolder
 {
 	public static final int IMAGE_DIMENSION = 1340;

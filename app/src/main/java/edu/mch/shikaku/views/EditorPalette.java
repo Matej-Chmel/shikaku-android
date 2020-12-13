@@ -11,6 +11,14 @@ import edu.mch.shikaku.control.ClickDetector;
 import edu.mch.shikaku.control.Clickable;
 import edu.mch.shikaku.renderers.EditorPaletteRenderer;
 
+/*
+	View palety používané pro editaci.
+
+	Kliknutím na paletu lze zvolit hodnotu, která se nastaví následujícímu poli,
+	které bude upraveno.
+	Kliknutím na hodnotu nejvíce vpravo se spustí aktivita ChooseFieldValueActivity,
+	pomocí které lze vybrat libovolnou hodnotu.
+*/
 public class EditorPalette extends CustomView implements Clickable
 {
 	public static final int TILES_COUNT = 9;
@@ -76,11 +84,7 @@ public class EditorPalette extends CustomView implements Clickable
 	protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight)
 	{
 		super.onSizeChanged(width, height, oldWidth, oldHeight);
-		this.renderer = new EditorPaletteRenderer(
-				this.getContext(),
-				height,
-				width
-		);
+		this.renderer = new EditorPaletteRenderer(this.getContext(), height, width);
 	}
 	@SuppressLint("ClickableViewAccessibility")
 	public void setControlEnabled(boolean enabled)

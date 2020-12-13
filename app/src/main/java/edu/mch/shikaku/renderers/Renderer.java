@@ -5,6 +5,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 
+/*
+	Obecná třída pro vykreslování vlastních View na Canvas.
+
+	Ukládá bitmapu, kterou vykreslí pokud nedošlo ke změně View,
+	avšak byla View bylo zneplatněno.
+	Pokud změna nastala pak se předpokládá, že třídy, které z této dědí,
+	mají vlastní metodu draw, pomocí které nejprve vykreslí bitmapu,
+	která se nakonec opět vykreslí do Canvas daného View.
+*/
 public abstract class Renderer
 {
 	protected final Bitmap bitmap;

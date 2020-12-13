@@ -3,6 +3,9 @@ import android.os.Handler;
 import java.util.TimerTask;
 import edu.mch.shikaku.activities.GameActivity;
 
+/*
+	TimerTask využívaný k periodickému volání metody run za účelem měření času.
+*/
 public class StopWatchTask extends TimerTask
 {
 	private final Handler handler;

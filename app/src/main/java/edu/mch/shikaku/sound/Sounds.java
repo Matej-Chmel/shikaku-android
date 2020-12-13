@@ -1,5 +1,8 @@
 package edu.mch.shikaku.sound;
 
+/*
+	Statická třída obsahující indexy jednotlivých zvukových efektů.
+*/
 public class Sounds
 {
 	public static final int CORRECT = 0;
@@ -8,4 +11,8 @@ public class Sounds
 	public static final int VICTORY = 3;
 	public static final int WRONG = 4;
 	public static final int COUNT = 5;
+
+	private Sounds()
+	{
+	}
 }

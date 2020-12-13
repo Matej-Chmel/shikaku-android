@@ -29,6 +29,31 @@ import edu.mch.shikaku.storage.DatabaseException;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
 
+/*
+	Aktivita pro řešení a editaci hlavolamu.
+
+	Mód řešení hlavolamu:
+	Gesty lze do mřížky hlavolamu kreslit čtyřúhelníky.
+	Více o ovládání v třídě PlayableLevel.
+	Z menu lze řešení hlavolamu restartovat.
+	Po dokončení hlavolamu se zobrazí tlačítko.
+	Po kliknutní na tlačítko se načte další hlavolam.
+
+	Mód editace hlavolamu:
+	V horní části se nachází paleta, ze které lze vybrat hodnotu pole.
+	Kliknutím na libovolné pole, se přepíše jeho hodnota.
+	Pokud je zapnutý switch gumy v levém dolním rohu,
+	pak kliknutí na pole nastaví jeho hodnotu na 0.
+	Tlačítkem uprostřed nastavit všechny hodnoty na 0.
+	Z menu lze vybrat možnost "Zvolit velikost" a přesunout se do aktivity ChooseDimensionsActivity
+	pro vybrání velikosti hlavolamu.
+	Po návratu zpět se hlavolam překreslí na novou velikost.
+	Tlačítkem v pravém dolním rohu se aktivita přesune do módu testování hlavolamu.
+
+	Mód testování hlavolamu:
+	Aby bylo možné hlavolam uložit, je potřeba ho nejdříve úspěšně vyřešit.
+	Pomocí tlačítka v levém dolním rohu je možné se vrátit zpět do módu editace.
+*/
 public class GameActivity extends AppCompatActivity
 {
 	public static final int DEFAULT_LEVEL_DIMENSION = 5;
@@ -83,8 +108,7 @@ public class GameActivity extends AppCompatActivity
 			Toast.makeText(this,
 					resources.getString(R.string.exception_soundError),
 					Toast.LENGTH_LONG
-			)
-					.show();
+			).show();
 		}
 
 		this.stopWatch = new StopWatch(new Handler(Looper.getMainLooper()), this);

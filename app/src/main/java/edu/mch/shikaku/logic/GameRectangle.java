@@ -3,6 +3,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.HashMap;
 
+/*
+	Objekt čtyřúhelníku používaný při řešení hlavolamu.
+
+	Obsahuje logiku své vykreslení.
+	Čtyřúhelník lze do mřížky zakreslit libovolným směrem gesta.
+*/
 public class GameRectangle
 {
 	private Paint paint;

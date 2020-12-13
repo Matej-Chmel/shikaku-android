@@ -3,6 +3,9 @@ import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 
+/*
+	Zpracovává kliknutí na View.
+*/
 public class ClickDetector implements View.OnTouchListener
 {
 	private final Clickable clickable;

@@ -13,6 +13,27 @@ import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.sound.Sounds;
 import edu.mch.shikaku.views.GameView;
 
+/*
+	Objekt zpracovávající herní logiku
+	a také určuje pořadí vykreslení jednotlivých vrstev na Canvas.
+
+	Herní logika:
+	Při vytvoření gesta se uloží pozice označeného pole v mřížce.
+	Při ukončení gesta se uloží další pozice.
+	Pomocí těchto dvou pozic se poté vytvoří čtyřúhelník.
+	Čtyřúhelník se úspěšně uloží, pokud nepřekrývá žádný jiný čtyřúhelník,
+	a zárověň překrývá právě jednu hodnotu v mřížce, která je stejná jako
+	počet polí, které čtyřúhelník překrývá.
+
+	Pokud geta začíná a končí ve stejném poli, pakse nevytváří čtyřúhelník.
+	Avšak lze pomocí tohoto gesta odstranit čtyřúhelník, který se nachází na pozici gesta.
+
+	Pořadí vykreslení:
+	Nejdříve se vykreslí bílé pozadí.
+	Poté všechny správně sestavené čtyřúhelníky z gameRectangles.
+	Poté právě sestavovaný čtyřúhelník pomocí gesta.
+	Nakonec mřížka a hodnoty polí.
+*/
 public class PlayableLevel extends ViewableLevel
 {
 	private BaseRenderer baseRenderer;

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.widget.TextView;
 import edu.mch.shikaku.R;
 
+/*
+	Singleton vykreslující hodnotu času do TextView.
+*/
 public class StopWatchDisplayer
 {
 	private static StopWatchDisplayer instance;

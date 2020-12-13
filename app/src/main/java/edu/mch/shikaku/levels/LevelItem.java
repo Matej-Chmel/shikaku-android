@@ -6,6 +6,12 @@ import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
 
+/*
+	Reprezentuje položku ListView.
+
+	Oproti abstraktní třídě Level, ukládá navíc obtížnost a náhled hlavolamu.
+	Obtížnost určuje barvu pozadí položky.
+*/
 public class LevelItem extends Level
 {
 	public Bitmap bitmap;

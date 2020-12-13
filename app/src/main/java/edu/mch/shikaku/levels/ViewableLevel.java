@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import edu.mch.shikaku.renderers.TopRenderer;
 import edu.mch.shikaku.views.GameView;
 
+/*
+	Rodič tříd EditableLevel a PlayableLevel.
+*/
 public abstract class ViewableLevel extends Level
 {
 	protected boolean controlEnabled;

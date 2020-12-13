@@ -3,12 +3,14 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import edu.mch.shikaku.R;
 
+/*
+	Výčet obtížností hlavolamu s metodou pro jejich výpočet.
+	Obtížnost hlavolamu určuje, jako barvou se vykreslí pozadí položky v ListView.
+*/
 public enum Difficulty
 {
-	EASY(R.color.difficulty_easy, 0), NORMAL(R.color.difficulty_normal,
-		1
-), MEDIUM(R.color.difficulty_medium, 2), HARD(R.color.difficulty_hard,
-		3
+	EASY(R.color.difficulty_easy, 0), NORMAL(R.color.difficulty_normal, 1
+), MEDIUM(R.color.difficulty_medium, 2), HARD(R.color.difficulty_hard, 3
 ), EXTREME(R.color.difficulty_extreme, 4);
 
 	private static final HashMap<Integer, Difficulty> difficultyByValue;

@@ -5,6 +5,12 @@ import android.graphics.Paint;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.logic.GameRectangle;
 
+/*
+	Vykresluje právě vytvářený čtyřúhelník.
+
+	Pokud je čtyřúhelník správně sestaven, je vykreslen barvou R.color.gesture_ok,
+	jinak R.color.gesture_overlaps.
+*/
 public class GestureRenderer extends LevelRenderer
 {
 	private final Paint okPaint;

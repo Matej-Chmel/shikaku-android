@@ -13,6 +13,16 @@ import edu.mch.shikaku.control.OnLevelItemLongClickListener;
 import edu.mch.shikaku.levels.LevelAdapter;
 import edu.mch.shikaku.levels.LevelManager;
 
+/*
+	Aktivita zobrazující seznam všech hlavolamů.
+
+	Kliknutím na hlavolam se spustí GameActivity v módu řešení hlavolamu.
+	Dlouhým kliknutním na hlavolam se spustí editace hlavolamu.
+	Kliknutím na tlačítko v pravém dolním rohu se spustí editace nového hlavolamu.
+	Z menu lze resetovat databázi hlavolamů do původní podoby.
+	Tj. vymazat všechny hlavolamy a načíst pouze ty, které se nacházejí v souboru levels.txt
+	Seznam reaguje na změny.
+*/
 public class ListActivity extends AppCompatActivity
 {
 	private LevelAdapter levelAdapter;

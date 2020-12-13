@@ -9,6 +9,10 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import edu.mch.shikaku.R;
 
+/*
+	Adaptér pro ListView.
+	Využívá návrhového vzoru ViewHolder.
+*/
 public class LevelAdapter extends ArrayAdapter<LevelItem>
 {
 	public LevelAdapter(Context context, ArrayList<LevelItem> entries)
@@ -24,8 +28,7 @@ public class LevelAdapter extends ArrayAdapter<LevelItem>
 
 		if (view == null)
 		{
-			view = ((LayoutInflater) this.getContext()
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item_level,
+			view = ((LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item_level,
 					parent,
 					false
 			);

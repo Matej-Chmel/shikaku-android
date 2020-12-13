@@ -6,6 +6,10 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
 
+/*
+	Aktivita zobrazující informace o aplikaci.
+	Kliknutím na imageView s GitHub logem, lze otevřít odkaz na repozitář projektu.
+*/
 public class AboutActivity extends AppCompatActivity
 {
 	@Override

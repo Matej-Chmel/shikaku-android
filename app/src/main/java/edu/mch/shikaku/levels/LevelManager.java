@@ -13,6 +13,12 @@ import edu.mch.shikaku.storage.NoLevelsException;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
 
+/*
+	Singleton, který ukládá položky ListView v paměti.
+
+	Pomocí něj si mohou aktivity mezi sebou předávat informace o tom,
+	který hlavolam se má načíst do GameView nebo, který se má uložit do databáze.
+*/
 public class LevelManager
 {
 	private static LevelManager instance;

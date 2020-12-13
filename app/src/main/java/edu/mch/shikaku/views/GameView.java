@@ -8,6 +8,9 @@ import edu.mch.shikaku.levels.EditableLevel;
 import edu.mch.shikaku.levels.PlayableLevel;
 import edu.mch.shikaku.levels.ViewableLevel;
 
+/*
+	View pro zobrazení hlavolamu.
+*/
 public class GameView extends CustomView
 {
 	private GameActivity host;

@@ -4,6 +4,9 @@ import android.content.res.Resources;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.levels.Level;
 
+/*
+	Výjimka vyvolaná při detekování chyby na SQLite databázi.
+*/
 public class DatabaseException extends Exception
 {
 	@SuppressLint("DefaultLocale")
@@ -14,8 +17,7 @@ public class DatabaseException extends Exception
 
 	public String getMessage(Resources resources)
 	{
-		return String.format(
-				"%s\n%s",
+		return String.format("%s\n%s",
 				resources.getString(R.string.exception_databaseError),
 				super.getMessage()
 		);

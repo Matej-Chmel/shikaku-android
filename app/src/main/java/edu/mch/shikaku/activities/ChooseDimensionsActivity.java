@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.levels.Level;
 
+/*
+	Aktivita, ve které lze zvolit rozměry hlavolamu při jeho editaci.
+	Pokaždé spouštěna pomocí startActivityForResult.
+*/
 public class ChooseDimensionsActivity extends AppCompatActivity
 {
 	private EditText editNumberDimX;

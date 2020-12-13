@@ -4,7 +4,10 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.Nullable;
 
-public class CustomView extends View
+/*
+	Abstraktní třída vlastního View.
+*/
+public abstract class CustomView extends View
 {
 	protected boolean changed = true;
 	protected boolean ready = false;

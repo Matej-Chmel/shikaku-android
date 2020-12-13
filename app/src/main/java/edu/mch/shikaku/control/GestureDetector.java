@@ -4,6 +4,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import edu.mch.shikaku.levels.PlayableLevel;
 
+/*
+	Zpracovává gesta pro GameView.
+	Více o gestech ve třídě PlayableLevel.
+*/
 public class GestureDetector implements View.OnTouchListener
 {
 	private final PlayableLevel host;

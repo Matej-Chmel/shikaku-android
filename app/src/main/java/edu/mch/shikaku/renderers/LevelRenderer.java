@@ -1,5 +1,8 @@
 package edu.mch.shikaku.renderers;
 
+/*
+	Abstraktní třída pro vykreslování hlavolamu.
+*/
 public abstract class LevelRenderer extends Renderer
 {
 	public static final float LINE_WIDTH = 16;

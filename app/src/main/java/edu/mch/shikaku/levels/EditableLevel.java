@@ -9,6 +9,16 @@ import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
 
+/*
+	Objekt hlavolamu, který se používá při editaci.
+
+	Lze měnit hodnoty polí a měnit rozměry.
+	Obsahuje reference na paletu, aby správně určil vkládanou hodnotu.
+	Pokud se edituje již existující hlavolam, obsahuje i referenci na položku z ListView,
+	kterou může informovat o změnách.
+
+	Tato třída vykresluje pouze mřížku s hodnotami bez čtyřúhelníků.
+*/
 public class EditableLevel extends ViewableLevel implements Clickable
 {
 	private int lastX;

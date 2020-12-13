@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import edu.mch.shikaku.storage.AssetReader;
 import edu.mch.shikaku.storage.Preferences;
 
+/*
+	Singleton sdružující všechny zvukové efekty.
+	Nastavení zvukových efektů se načítání a ukládá pomocí bitových operací na celém čísle.
+*/
 public class SoundManager
 {
 	private static SoundManager instance;

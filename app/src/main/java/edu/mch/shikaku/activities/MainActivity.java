@@ -14,6 +14,21 @@ import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.storage.NoLevelsException;
 import edu.mch.shikaku.storage.Preferences;
 
+/*
+	Spouštěcí aktivita.
+
+	Obsahuje tři tlačítka:
+	1. náhodný hlavolam: spustí GameActivity s náhodným hlavolamem v módu řešení.
+	2. vybrat hlavolam: spustí ListActivity.
+	3. vytvořit hlavolam: spustí GameActivity v módu editace nového hlavolamu.
+
+	V menu jsou dvě položky:
+	1. o aplikaci: spustí AboutActivity.
+	2. zvukové efekty: spustí SoundTestActivity.
+
+	Po odchodu z aktivity pomocí tlačítka zpět,
+	se uloží nastavení zvukových efektů do SharedPreferences.
+*/
 public class MainActivity extends AppCompatActivity
 {
 	private LevelManager levelManager;
@@ -39,8 +54,7 @@ public class MainActivity extends AppCompatActivity
 
 		try
 		{
-			this.preferences.saveSoundSettings(SoundManager.getInstance(this)
-					.getSoundSettingsAsInteger());
+			this.preferences.saveSoundSettings(SoundManager.getInstance(this).getSoundSettingsAsInteger());
 		}
 		catch (IOException e)
 		{

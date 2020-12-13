@@ -4,6 +4,9 @@ import android.graphics.Paint;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.views.EditorPalette;
 
+/*
+	Vykresluje paletu EditorPalette.
+*/
 public class EditorPaletteRenderer extends Renderer
 {
 	private final Paint blackPaint;

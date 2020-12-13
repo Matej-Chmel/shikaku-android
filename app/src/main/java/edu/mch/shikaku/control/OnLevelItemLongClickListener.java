@@ -3,6 +3,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import edu.mch.shikaku.activities.ListActivity;
 
+/*
+	Zpracovává dlouhá kliknutní na položky ListView.
+*/
 public class OnLevelItemLongClickListener implements AdapterView.OnItemLongClickListener
 {
 	private final ListActivity host;

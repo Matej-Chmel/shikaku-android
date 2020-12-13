@@ -4,6 +4,12 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import java.util.Scanner;
 
+/*
+	Abstraktní třída hlavolamu.
+
+	Obsahuje ty nejzákladnější vlastnosti pro ukládání mřížky během řešení
+	a ukládání objektu do databáze.
+*/
 public abstract class Level
 {
 	public static final int MAXIMUM_DIMENSION = 11;

@@ -4,6 +4,9 @@ import android.graphics.Paint;
 import edu.mch.shikaku.levels.Level;
 import edu.mch.shikaku.levels.LevelItem;
 
+/*
+	Vykresluje mřížku hlavolamu a hodnoty polí.
+*/
 public class TopRenderer extends LevelRenderer
 {
 	private final Paint blackPaint;

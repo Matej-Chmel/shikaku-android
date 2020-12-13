@@ -1,6 +1,10 @@
 package edu.mch.shikaku.stopwatch;
 import edu.mch.shikaku.activities.GameActivity;
 
+/*
+	Objekt, který se předává mezi vláknem, na kterém běží stopky
+	a vláknem uživatelského rozhraní.
+*/
 public class StopWatchUpdater implements Runnable
 {
 	private final GameActivity host;

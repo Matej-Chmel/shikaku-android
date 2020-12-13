@@ -3,6 +3,9 @@ import android.content.Context;
 import android.graphics.Paint;
 import edu.mch.shikaku.R;
 
+/*
+	Kruhový seznam barev.
+*/
 public class CircularPaintList
 {
 	private int currentIndex;

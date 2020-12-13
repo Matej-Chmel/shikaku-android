@@ -10,6 +10,16 @@ import edu.mch.shikaku.R;
 import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.sound.Sounds;
 
+/*
+	Aktivita s nastavením a testováním zvukových efektů.
+
+	Pro každý zvukový efekt obsahuje tlačítko na levé straně.
+	Kliknutím na něj lze efekt přehrát.
+	Přepínači na pravé straně lze nastavit,
+	zda-li je povoleno přehrávat daný zvuk při řešení hlavolamu.
+
+	Nastavení zvuků se ukládá v SharedPreferences.
+*/
 public class SoundTestActivity extends AppCompatActivity
 {
 	private String errorText;
@@ -30,8 +40,7 @@ public class SoundTestActivity extends AppCompatActivity
 			boolean[] soundSettings = this.manager.getSoundSettingsAsArray();
 
 			this.setToggleButtonState(R.id.toggleButton_correct, soundSettings[Sounds.CORRECT]);
-			this.setToggleButtonState(
-					R.id.toggleButton_newBestTime,
+			this.setToggleButtonState(R.id.toggleButton_newBestTime,
 					soundSettings[Sounds.NEW_BEST_TIME]
 			);
 			this.setToggleButtonState(R.id.toggleButton_remove, soundSettings[Sounds.REMOVE]);

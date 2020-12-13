@@ -9,6 +9,9 @@ import edu.mch.shikaku.colors.CircularPaintList;
 import edu.mch.shikaku.logic.GameField;
 import edu.mch.shikaku.logic.GameRectangle;
 
+/*
+	Vykresluje správně sestavené čtyřúhelníky.
+*/
 public class BaseRenderer extends LevelRenderer
 {
 	private Paint currentPaint;
@@ -28,13 +31,12 @@ public class BaseRenderer extends LevelRenderer
 				int startX = (int) (x * this.moveWidth + LevelRenderer.LINE_WIDTH);
 				int startY = (int) (y * this.moveHeight + LevelRenderer.LINE_WIDTH);
 
-				Objects.requireNonNull(fieldsByPosition.get(lengthX * y + x))
-						.setBackgroundRectangle(new Rect(
-								startX,
-								startY,
-								startX + (int) this.tileWidth,
-								startY + (int) this.tileHeight
-						));
+				Objects.requireNonNull(fieldsByPosition.get(lengthX * y + x)).setBackgroundRectangle(new Rect(
+						startX,
+						startY,
+						startX + (int) this.tileWidth,
+						startY + (int) this.tileHeight
+				));
 			}
 	}
 

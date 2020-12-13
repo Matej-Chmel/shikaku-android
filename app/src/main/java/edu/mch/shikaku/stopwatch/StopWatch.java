@@ -3,6 +3,11 @@ import android.os.Handler;
 import java.util.Timer;
 import edu.mch.shikaku.activities.GameActivity;
 
+/*
+	Stopky měřící čas řešení hlavolamu.
+	Pro předání aktuálního času k vykreslení do vlákna uživatelského rozhraní
+	se využívá objektu Handler.
+*/
 public class StopWatch
 {
 	public static final long PERIOD = 100;

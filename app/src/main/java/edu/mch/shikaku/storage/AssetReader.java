@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import edu.mch.shikaku.sound.Sound;
 
+/*
+	Objekt pro čtení textu a zvukových souborů z assetů.
+*/
 public class AssetReader
 {
 	private final AssetManager manager;
@@ -17,8 +20,7 @@ public class AssetReader
 	public Sound readSound(String filename) throws IOException
 	{
 		AssetFileDescriptor descriptor = this.manager.openFd(filename);
-		Sound sound = new Sound(
-				descriptor.getFileDescriptor(),
+		Sound sound = new Sound(descriptor.getFileDescriptor(),
 				descriptor.getStartOffset(),
 				descriptor.getLength()
 		);
