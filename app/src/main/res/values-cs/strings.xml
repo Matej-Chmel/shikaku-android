@@ -21,5 +21,8 @@
 	<string name="toast_saveLevel">Dokončete hlavolam, poté bude uložen.</string>
 	<string name="toast_newBestTime">Rekordní čas!</string>
 	<string name="stopWatch_notAttempted">Nedokončen</string>
+	<string name="editNumber_fieldValue_hint">Zadejte hodnotu pole.</string>
+	<string name="confirm">Hotovo</string>
+	<string name="toast_fieldValueTooHigh">Hodnota nemůže překročit %d.</string>
 
 </resources>

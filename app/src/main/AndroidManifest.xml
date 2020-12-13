@@ -11,6 +11,7 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.Shikaku"
 		tools:ignore="AllowBackup">
+		<activity android:name=".ChooseNumberActivity" />
 		<activity android:name=".ListActivity" />
 		<activity android:name=".GameActivity" />
 		<activity android:name=".AboutActivity" />

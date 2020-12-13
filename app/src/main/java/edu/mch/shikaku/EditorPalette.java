@@ -13,6 +13,8 @@ public class EditorPalette extends CustomView implements Clickable
 	public static final int LAST_TILE_INDEX = EditorPalette.TILES_COUNT - 1;
 
 	private int chosenTileIndex = 0;
+	private Integer extraNumber;
+	private GameActivity host;
 	private SwitchCompat switchEraser;
 	private EditorPaletteRenderer renderer;
 
@@ -28,8 +30,9 @@ public class EditorPalette extends CustomView implements Clickable
 	{
 		super(context, attrs, defStyleAttr);
 	}
-	public void init(SwitchCompat switchEraser)
+	public void init(GameActivity host, SwitchCompat switchEraser)
 	{
+		this.host = host;
 		this.switchEraser = switchEraser;
 	}
 
@@ -38,7 +41,7 @@ public class EditorPalette extends CustomView implements Clickable
 		if (this.switchEraser.isChecked())
 			return 0;
 		if (this.chosenTileIndex == EditorPalette.LAST_TILE_INDEX)
-			return -1;
+			return this.extraNumber == null ? -1 : this.extraNumber;
 		return this.chosenTileIndex + 2;
 	}
 	@Override
@@ -46,6 +49,10 @@ public class EditorPalette extends CustomView implements Clickable
 	{
 		this.switchEraser.setChecked(false);
 		this.chosenTileIndex = (int) (x / this.renderer.tileWidth);
+
+		if (this.chosenTileIndex == EditorPalette.LAST_TILE_INDEX)
+			this.host.onEditorPaletteSelectExtraNumber();
+
 		this.update();
 	}
 	@Override
@@ -55,7 +62,7 @@ public class EditorPalette extends CustomView implements Clickable
 
 		if (this.ready && this.changed)
 		{
-			this.renderer.draw(this.chosenTileIndex);
+			this.renderer.draw(this.chosenTileIndex, this.extraNumber);
 			this.changed = true;
 		}
 
@@ -84,5 +91,10 @@ public class EditorPalette extends CustomView implements Clickable
 			this.setVisibility(View.GONE);
 			this.setOnTouchListener(null);
 		}
+	}
+	public void setExtraNumber(Integer extraNumber)
+	{
+		this.extraNumber = extraNumber;
+		this.update();
 	}
 }

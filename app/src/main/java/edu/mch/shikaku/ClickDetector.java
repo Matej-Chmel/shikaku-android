@@ -16,7 +16,8 @@ public class ClickDetector implements View.OnTouchListener
 	@Override
 	public boolean onTouch(View view, MotionEvent event)
 	{
-		this.clickable.onClick(event.getX(), event.getY());
+		if (event.getAction() == MotionEvent.ACTION_UP)
+			this.clickable.onClick(event.getX(), event.getY());
 		return true;
 	}
 }

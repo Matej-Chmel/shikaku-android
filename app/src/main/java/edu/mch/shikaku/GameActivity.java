@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -82,6 +83,14 @@ public class GameActivity extends AppCompatActivity
 		this.textViewStopWatch.setTextColor(Color.BLACK);
 		this.stopWatch.start();
 	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent)
+	{
+		super.onActivityResult(requestCode, resultCode, intent);
+
+		if (intent != null && resultCode == IntentExtras.RESULT_CODE_FIELD_VALUE)
+			this.editorPalette.setExtraNumber(intent.getIntExtra(IntentExtras.FIELD_VALUE, 0));
+	}
 	public void onButtonClearEditor(View view)
 	{
 		if (this.gameView.level instanceof EditableLevel)
@@ -94,6 +103,13 @@ public class GameActivity extends AppCompatActivity
 	{
 		this.buttonNextLevel.setVisibility(View.GONE);
 		this.loadNextLevel();
+	}
+	public void onEditorPaletteSelectExtraNumber()
+	{
+		this.startActivityForResult(
+				new Intent(this, ChooseNumberActivity.class),
+				IntentExtras.RESULT_CODE_FIELD_VALUE
+		);
 	}
 	public void onFloatingButtonBackToEditor(View view)
 	{
@@ -150,7 +166,7 @@ public class GameActivity extends AppCompatActivity
 		this.testGameInProgress = false;
 
 		this.buttonClearEditor.setVisibility(View.VISIBLE);
-		this.editorPalette.init(this.switchEraser);
+		this.editorPalette.init(this, this.switchEraser);
 		this.editorPalette.setControlEnabled(true);
 		this.floatingButtonBackToEditor.setVisibility(View.GONE);
 		this.floatingButtonSaveLevel.setVisibility(View.VISIBLE);

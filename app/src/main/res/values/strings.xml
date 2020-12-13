@@ -24,5 +24,8 @@
 	<string name="stopWatch_placeholder" translatable="false">0 s</string>
 	<string name="toast_newBestTime">You beat the record!</string>
 	<string name="stopWatch_notAttempted">Not attempted</string>
+	<string name="editNumber_fieldValue_hint">Enter field value.</string>
+	<string name="confirm">OK</string>
+	<string name="toast_fieldValueTooHigh">Value cannot be higher than %d.</string>
 
 </resources>

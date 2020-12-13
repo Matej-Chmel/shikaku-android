@@ -44,7 +44,7 @@ public enum Difficulty
 					maxField = fieldValue;
 			}
 
-		if (maxField == 0)
+		if (maxField == 0 || maxField == totalSpace)
 			return Difficulty.EASY;
 
 		float percentageTake = (float) maxField / (float) totalSpace;

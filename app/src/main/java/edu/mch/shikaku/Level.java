@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public abstract class Level
 {
+	public static final int MAXIMUM_DIMENSION = 32;
+	public static final int MAXIMUM_FIELD_VALUE = Level.MAXIMUM_DIMENSION * Level.MAXIMUM_DIMENSION;
+
 	public static final String BOARD = "board";
 	public static final String BEST_TIME = "best_time";
 	public static final String DIFFICULTY = "difficulty";

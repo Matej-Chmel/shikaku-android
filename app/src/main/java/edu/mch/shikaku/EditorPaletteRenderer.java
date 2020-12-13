@@ -25,7 +25,7 @@ public class EditorPaletteRenderer extends Renderer
 		this.blackPaint.setTextSize(this.tileWidth / 2);
 	}
 
-	public void draw(int chosenTileIndex)
+	public void draw(int chosenTileIndex, Integer extraNumber)
 	{
 		this.renderBackground(this.canvas);
 
@@ -46,7 +46,7 @@ public class EditorPaletteRenderer extends Renderer
 			);
 
 		this.canvas.drawText(
-				"...",
+				extraNumber == null ? "..." : extraNumber.toString(),
 				this.numberTilesCount * this.tileWidth + this.textMoveWidth,
 				this.textMoveHeight,
 				this.blackPaint
