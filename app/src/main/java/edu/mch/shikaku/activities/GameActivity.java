@@ -16,10 +16,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.io.IOException;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.levels.EditableLevel;
 import edu.mch.shikaku.levels.LevelItem;
 import edu.mch.shikaku.levels.LevelManager;
+import edu.mch.shikaku.sound.SoundManager;
+import edu.mch.shikaku.sound.Sounds;
 import edu.mch.shikaku.stopwatch.StopWatch;
 import edu.mch.shikaku.stopwatch.StopWatchDisplayer;
 import edu.mch.shikaku.storage.DatabaseException;
@@ -36,13 +39,14 @@ public class GameActivity extends AppCompatActivity
 	private FloatingActionButton floatingButtonBackToEditor;
 	private FloatingActionButton floatingButtonSaveLevel;
 	private GameView gameView;
-	private LevelManager levelManager;
 	private SwitchCompat switchEraser;
 	private TextView textViewStopWatch;
 
 	private EditableLevel editableLevel;
 	private boolean launchedFromMain;
 	private LevelItem levelItem;
+	private LevelManager levelManager;
+	private SoundManager soundManager;
 	private StopWatch stopWatch;
 	private StopWatchDisplayer stopWatchDisplayer;
 	private boolean testGameInProgress;
@@ -69,6 +73,20 @@ public class GameActivity extends AppCompatActivity
 		Intent intent = this.getIntent();
 		int levelIndex = intent.getIntExtra(IntentExtras.LEVEL_INDEX, 0);
 
+		try
+		{
+			this.soundManager = SoundManager.getInstance(this);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			Toast.makeText(this,
+					resources.getString(R.string.exception_soundError),
+					Toast.LENGTH_LONG
+			)
+					.show();
+		}
+
 		this.stopWatch = new StopWatch(new Handler(Looper.getMainLooper()), this);
 		this.stopWatchDisplayer = StopWatchDisplayer.getInstance(this);
 		this.toastNewBestTimeText = resources.getString(R.string.toast_newBestTime);
@@ -94,23 +112,10 @@ public class GameActivity extends AppCompatActivity
 		}
 	}
 
-	private void setGameState(boolean gameInProgress)
-	{
-		if (gameInProgress)
-		{
-			this.buttonNextLevel.setVisibility(View.GONE);
-			this.gameView.setControlEnabled(true);
-			this.textViewStopWatch.setTextColor(Color.BLACK);
-			return;
-		}
-
-		this.buttonNextLevel.setVisibility(View.VISIBLE);
-		this.gameView.setControlEnabled(false);
-	}
 	private void loadNextLevel()
 	{
 		this.levelItem = this.levelManager.nextLevel();
-		this.gameView.init(this, this.levelItem.toPlayableLevel(this.gameView));
+		this.gameView.init(this, this.levelItem.toPlayableLevel(this.gameView, this.soundManager));
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent)
@@ -157,8 +162,7 @@ public class GameActivity extends AppCompatActivity
 	}
 	public void onEditorPaletteSelectExtraNumber()
 	{
-		this.startActivityForResult(
-				new Intent(this, ChooseFieldValueActivity.class),
+		this.startActivityForResult(new Intent(this, ChooseFieldValueActivity.class),
 				IntentExtras.RESULT_CODE_FIELD_VALUE
 		);
 	}
@@ -176,6 +180,8 @@ public class GameActivity extends AppCompatActivity
 
 		if (milliseconds != 0 && this.levelItem.update(milliseconds))
 		{
+			if (this.soundManager != null)
+				this.soundManager.playSound(Sounds.NEW_BEST_TIME);
 			this.textViewStopWatch.setTextColor(Color.RED);
 			Toast.makeText(this, this.toastNewBestTimeText, Toast.LENGTH_LONG).show();
 
@@ -214,8 +220,7 @@ public class GameActivity extends AppCompatActivity
 		int id = item.getItemId();
 
 		if (id == R.id.menuItem_resize)
-			this.startActivityForResult(
-					new Intent(this, ChooseDimensionsActivity.class),
+			this.startActivityForResult(new Intent(this, ChooseDimensionsActivity.class),
 					IntentExtras.RESULT_CODE_DIMENSIONS
 			);
 		else if (id == R.id.menuItem_restart)
@@ -230,6 +235,19 @@ public class GameActivity extends AppCompatActivity
 	public void onStopWatchUpdate(long milliseconds)
 	{
 		this.stopWatchDisplayer.displayTo(this.textViewStopWatch, milliseconds);
+	}
+	private void setGameState(boolean gameInProgress)
+	{
+		if (gameInProgress)
+		{
+			this.buttonNextLevel.setVisibility(View.GONE);
+			this.gameView.setControlEnabled(true);
+			this.textViewStopWatch.setTextColor(Color.BLACK);
+			return;
+		}
+
+		this.buttonNextLevel.setVisibility(View.VISIBLE);
+		this.gameView.setControlEnabled(false);
 	}
 	private void startEditor()
 	{
@@ -256,7 +274,7 @@ public class GameActivity extends AppCompatActivity
 		this.floatingButtonBackToEditor.setVisibility(View.VISIBLE);
 		this.floatingButtonSaveLevel.setVisibility(View.GONE);
 		this.switchEraser.setVisibility(View.GONE);
-		this.gameView.init(this, this.editableLevel.toPlayableLevel());
+		this.gameView.init(this, this.editableLevel.toPlayableLevel(this.soundManager));
 
 		this.invalidateOptionsMenu();
 		Toast.makeText(this, this.toastSaveLevelText, Toast.LENGTH_LONG).show();

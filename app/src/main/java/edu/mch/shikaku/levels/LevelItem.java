@@ -2,6 +2,7 @@ package edu.mch.shikaku.levels;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
 
@@ -46,14 +47,15 @@ public class LevelItem extends Level
 	{
 		return new EditableLevel(this.createBoardCopy(), view, palette, this);
 	}
-	public PlayableLevel toPlayableLevel(GameView view)
+	public PlayableLevel toPlayableLevel(GameView view, SoundManager soundManager)
 	{
 		return new PlayableLevel(
 				this.createBoardCopy(),
 				this.getDimX(),
 				this.getDimY(),
 				view,
-				this.getId()
+				this.getId(),
+				soundManager
 		);
 	}
 	public String toTextDisplay()

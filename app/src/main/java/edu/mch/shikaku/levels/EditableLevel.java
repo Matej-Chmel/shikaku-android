@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import edu.mch.shikaku.control.ClickDetector;
 import edu.mch.shikaku.control.Clickable;
 import edu.mch.shikaku.control.PositionCalculator;
+import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.views.EditorPalette;
 import edu.mch.shikaku.views.GameView;
 
@@ -123,13 +124,14 @@ public class EditableLevel extends ViewableLevel implements Clickable
 	{
 		this.board[x][y] = value;
 	}
-	public PlayableLevel toPlayableLevel()
+	public PlayableLevel toPlayableLevel(SoundManager soundManager)
 	{
 		return new PlayableLevel(this.createBoardCopy(),
 				this.dimX,
 				this.dimY,
 				this.gameView,
-				this.id
+				this.id,
+				soundManager
 		);
 	}
 	public void update()

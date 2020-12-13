@@ -9,6 +9,8 @@ import edu.mch.shikaku.logic.GameField;
 import edu.mch.shikaku.logic.GameRectangle;
 import edu.mch.shikaku.renderers.BaseRenderer;
 import edu.mch.shikaku.renderers.GestureRenderer;
+import edu.mch.shikaku.sound.SoundManager;
+import edu.mch.shikaku.sound.Sounds;
 import edu.mch.shikaku.views.GameView;
 
 public class PlayableLevel extends ViewableLevel
@@ -22,14 +24,18 @@ public class PlayableLevel extends ViewableLevel
 	private GestureRenderer gestureRenderer;
 	private int gestureStartX;
 	private int gestureStartY;
+	private final SoundManager soundManager;
+	private final boolean soundManagerLoaded;
 	private int valuesTotal;
 
-	protected PlayableLevel(int[][] board, int dimX, int dimY, GameView gameView, long id)
+	protected PlayableLevel(int[][] board, int dimX, int dimY, GameView gameView, long id, SoundManager soundManager)
 	{
 		super(board, dimX, dimY, gameView, id);
 		this.fieldsByPosition = new HashMap<>();
 		this.gameRectangles = new LinkedHashSet<>();
 		this.gestureActive = false;
+		this.soundManager = soundManager;
+		this.soundManagerLoaded = this.soundManager != null;
 		this.valuesTotal = 0;
 
 		int lengthX = this.dimX + 1;
@@ -86,18 +92,29 @@ public class PlayableLevel extends ViewableLevel
 		if (this.gestureStartX == this.gestureEndX && this.gestureStartY == this.gestureEndY)
 		{
 			if (rectangle.doesOverlap())
+			{
 				this.gameRectangles.remove(rectangle.popOverlapping());
+				this.playSound(Sounds.REMOVE);
+			}
 			return;
 		}
 
 		if (!rectangle.isCorrect())
+		{
+			this.playSound(Sounds.WRONG);
 			return;
+		}
 
 		rectangle.setAsParent();
 		this.gameRectangles.add(rectangle);
 
 		if (this.gameRectangles.size() == this.valuesTotal)
+		{
 			this.gameView.onLevelCompleted();
+			this.playSound(Sounds.VICTORY);
+		}
+		else
+			this.playSound(Sounds.CORRECT);
 	}
 	public void onGestureMove(int x, int y)
 	{
@@ -129,6 +146,11 @@ public class PlayableLevel extends ViewableLevel
 		this.gestureRenderer = new GestureRenderer(context, this.dimX, this.dimY, height, width);
 
 		this.enabledGestures();
+	}
+	private void playSound(int position)
+	{
+		if (this.soundManagerLoaded)
+			this.soundManager.playSound(position);
 	}
 	public void restart()
 	{
