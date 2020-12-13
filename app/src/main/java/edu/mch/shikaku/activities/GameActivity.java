@@ -238,6 +238,8 @@ public class GameActivity extends AppCompatActivity
 	}
 	private void setGameState(boolean gameInProgress)
 	{
+		this.stopWatch.stop();
+
 		if (gameInProgress)
 		{
 			this.buttonNextLevel.setVisibility(View.GONE);
