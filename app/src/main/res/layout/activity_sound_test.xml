@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".activities.SoundTestActivity">
+
+	<Button
+		android:id="@+id/button_soundNewBestTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onSoundButton"
+		android:text="@string/button_soundNewBestTime_text"
+		android:textAlignment="center"
+		android:textSize="@dimen/soundTest_buttons_textSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.498"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_soundVictory"
+		app:layout_constraintVertical_bias="0.044" />
+
+	<Button
+		android:id="@+id/button_soundRemove"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onSoundButton"
+		android:text="@string/button_soundRemove_text"
+		android:textAlignment="center"
+		android:textSize="@dimen/soundTest_buttons_textSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.498"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_soundWrong"
+		app:layout_constraintVertical_bias="0.026" />
+
+	<Button
+		android:id="@+id/button_soundCorrect"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onSoundButton"
+		android:text="@string/button_soundCorrect_text"
+		android:textAlignment="center"
+		android:textSize="@dimen/soundTest_buttons_textSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.498"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.241" />
+
+	<Button
+		android:id="@+id/button_soundVictory"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onSoundButton"
+		android:text="@string/button_soundVictory_text"
+		android:textAlignment="center"
+		android:textSize="@dimen/soundTest_buttons_textSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.498"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_soundRemove"
+		app:layout_constraintVertical_bias="0.039" />
+
+	<Button
+		android:id="@+id/button_soundWrong"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onSoundButton"
+		android:text="@string/button_soundWrong_text"
+		android:textAlignment="center"
+		android:textSize="@dimen/soundTest_buttons_textSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.498"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_soundCorrect"
+		app:layout_constraintVertical_bias="0.028" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

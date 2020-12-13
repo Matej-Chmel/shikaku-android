@@ -34,5 +34,12 @@
 	<string name="toast_dimension_tooHigh">No dimension can be higher than %d.</string>
 	<string name="toast_dimension_oneTotalSpace">Level cannot consist of only one field.</string>
 	<string name="toast_dimension_notValid">The dimension value is not valid.</string>
+	<string name="button_soundWrong_text">Error</string>
+	<string name="button_soundCorrect_text">Correct</string>
+	<string name="button_soundRemove_text">Remove</string>
+	<string name="button_soundVictory_text">Victory</string>
+	<string name="button_soundNewBestTime_text">New record</string>
+	<string name="menuItem_soundTest_title">Test sounds</string>
+	<string name="exception_soundError">Error occurred when loading sounds.</string>
 
 </resources>

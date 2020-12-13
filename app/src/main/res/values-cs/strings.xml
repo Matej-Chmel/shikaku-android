@@ -29,5 +29,12 @@
 	<string name="toast_dimension_tooHigh">Žádný z rozměrů nemůže překročit %d.</string>
 	<string name="toast_dimension_oneTotalSpace">Hlavolam se nemůže skládat pouze z jednoho pole.</string>
 	<string name="toast_dimension_notValid">Nepovolená hodnota rozměru.</string>
+	<string name="button_soundWrong_text">Chyba</string>
+	<string name="button_soundCorrect_text">Správně</string>
+	<string name="button_soundRemove_text">Odstranit</string>
+	<string name="button_soundVictory_text">Výhra</string>
+	<string name="button_soundNewBestTime_text">Nový rekord</string>
+	<string name="menuItem_soundTest_title">Zvukové efekty</string>
+	<string name="exception_soundError">Chyba při načítání zvuků.</string>
 
 </resources>

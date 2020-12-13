@@ -67,7 +67,7 @@ public class LevelManager
 
 		try
 		{
-			String[] levelsData = new AssetReader(context).readFile("levels.txt").split(
+			String[] levelsData = new AssetReader(context).readText("levels.txt").split(
 					"\\r\\n[\\r\\n]+");
 
 			for (String data : levelsData)

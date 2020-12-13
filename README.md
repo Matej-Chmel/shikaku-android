@@ -12,3 +12,6 @@ Projekt do předmětu Tvorba aplikací pro mobilní zařízení II (TAMZ II).
 - [ ] Generování zadání hlavolamu
 - [ ] Srovnávání nejlepších časů mezi hráči
 - [ ] Hra po síti nebo bluetooth - závod více hráčů
+
+## Zvukové efekty
+Zvukové efekty jsem vytvořil v MuseScore a poté upravil jejich délku pomocí webové stránky [mp3cut.net](https://mp3cut.net/).

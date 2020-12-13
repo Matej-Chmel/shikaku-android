@@ -1,8 +1,10 @@
 package edu.mch.shikaku.storage;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import java.io.IOException;
 import java.io.InputStream;
+import edu.mch.shikaku.sound.Sound;
 
 public class AssetReader
 {
@@ -12,7 +14,18 @@ public class AssetReader
 	{
 		this.manager = context.getAssets();
 	}
-	public String readFile(String filename) throws IOException
+	public Sound readSound(String filename) throws IOException
+	{
+		AssetFileDescriptor descriptor = this.manager.openFd(filename);
+		Sound sound = new Sound(
+				descriptor.getFileDescriptor(),
+				descriptor.getStartOffset(),
+				descriptor.getLength()
+		);
+		descriptor.close();
+		return sound;
+	}
+	public String readText(String filename) throws IOException
 	{
 		InputStream stream = this.manager.open(filename);
 		byte[] buffer = new byte[stream.available()];

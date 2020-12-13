@@ -65,8 +65,12 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
-		if (item.getItemId() == R.id.menuItem_about)
+		int id = item.getItemId();
+
+		if (id == R.id.menuItem_about)
 			this.startActivity(new Intent(this, AboutActivity.class));
+		else if (id == R.id.menuItem_soundTest)
+			this.startActivity(new Intent(this, SoundTestActivity.class));
 
 		return true;
 	}
