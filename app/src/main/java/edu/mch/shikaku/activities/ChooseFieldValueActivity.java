@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.levels.Level;
 
-public class ChooseNumberActivity extends AppCompatActivity
+public class ChooseFieldValueActivity extends AppCompatActivity
 {
 	private EditText editNumberFieldValue;
 	private String toastFieldValueOneText;
@@ -19,7 +19,7 @@ public class ChooseNumberActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.activity_choose_number);
+		this.setContentView(R.layout.activity_choose_field_value);
 
 		Resources resources = this.getResources();
 
@@ -30,7 +30,7 @@ public class ChooseNumberActivity extends AppCompatActivity
 		this.toastFieldValueOneText = resources.getString(R.string.toast_fieldValue_one);
 	}
 
-	public void onButtonFieldValue(View view)
+	public void onButtonConfirm(View view)
 	{
 		int value = Integer.parseInt(this.editNumberFieldValue.getText().toString());
 

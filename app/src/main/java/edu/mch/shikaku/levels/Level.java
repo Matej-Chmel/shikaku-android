@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public abstract class Level
 {
-	public static final int MAXIMUM_DIMENSION = 32;
+	public static final int MAXIMUM_DIMENSION = 11;
 	public static final int MAXIMUM_FIELD_VALUE = Level.MAXIMUM_DIMENSION * Level.MAXIMUM_DIMENSION;
 
 	public static final String BOARD = "board";
@@ -29,11 +29,11 @@ public abstract class Level
 	}
 	protected Level(Cursor cursor)
 	{
-		this.dimX = cursor.getInt(cursor.getColumnIndex(Level.DIM_X));
-		this.dimY = cursor.getInt(cursor.getColumnIndex(Level.DIM_Y));
+		int dimX = cursor.getInt(cursor.getColumnIndex(Level.DIM_X));
+		int dimY = cursor.getInt(cursor.getColumnIndex(Level.DIM_Y));
+		this.init(new int[dimX][dimY], dimX, dimY);
 		this.id = cursor.getInt(cursor.getColumnIndex(Level.ID));
 
-		this.board = new int[this.dimX][this.dimY];
 		String boardData = cursor.getString(cursor.getColumnIndex(Level.BOARD));
 		Scanner scanner = new Scanner(boardData);
 

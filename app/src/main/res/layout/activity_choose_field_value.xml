@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".activities.ChooseNumberActivity">
+	tools:context=".activities.ChooseFieldValueActivity">
 
 	<EditText
 		android:id="@+id/editNumber_fieldValue"
@@ -24,13 +24,13 @@
 		android:importantForAutofill="no" />
 
 	<Button
-		android:id="@+id/button_fieldValue"
+		android:id="@+id/button_fieldValue_confirm"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:onClick="onButtonFieldValue"
+		android:onClick="onButtonConfirm"
 		android:text="@string/confirm"
 		android:textAlignment="center"
-		android:textSize="18sp"
+		android:textSize="@dimen/buttons_confirm_textSize"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"

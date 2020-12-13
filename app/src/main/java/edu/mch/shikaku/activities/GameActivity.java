@@ -105,8 +105,21 @@ public class GameActivity extends AppCompatActivity
 	{
 		super.onActivityResult(requestCode, resultCode, intent);
 
-		if (intent != null && resultCode == IntentExtras.RESULT_CODE_FIELD_VALUE)
+		if (intent == null)
+			return;
+
+		if (resultCode == IntentExtras.RESULT_CODE_FIELD_VALUE)
 			this.editorPalette.setExtraNumber(intent.getIntExtra(IntentExtras.FIELD_VALUE, 0));
+		else if (resultCode == IntentExtras.RESULT_CODE_DIMENSIONS)
+		{
+			int dimX = intent.getIntExtra(IntentExtras.DIM_X, 0);
+			int dimY = intent.getIntExtra(IntentExtras.DIM_Y, 0);
+
+			if (dimX == 0 || dimY == 0)
+				return;
+
+			this.gameView.resizeLevel(dimX, dimY);
+		}
 	}
 	public void onButtonClearEditor(View view)
 	{
@@ -131,7 +144,8 @@ public class GameActivity extends AppCompatActivity
 	}
 	public void onEditorPaletteSelectExtraNumber()
 	{
-		this.startActivityForResult(new Intent(this, ChooseNumberActivity.class),
+		this.startActivityForResult(
+				new Intent(this, ChooseFieldValueActivity.class),
 				IntentExtras.RESULT_CODE_FIELD_VALUE
 		);
 	}
@@ -190,7 +204,10 @@ public class GameActivity extends AppCompatActivity
 		if (id == R.id.menuItem_restart)
 			this.gameView.clearLevel();
 		else if (id == R.id.menuItem_resize)
-			Toast.makeText(this, "Resize", Toast.LENGTH_SHORT).show();
+			this.startActivityForResult(
+					new Intent(this, ChooseDimensionsActivity.class),
+					IntentExtras.RESULT_CODE_DIMENSIONS
+			);
 
 		return true;
 	}

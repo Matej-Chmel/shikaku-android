@@ -29,8 +29,6 @@ public class EditableLevel extends ViewableLevel implements Clickable
 	}
 	private void init(EditorPalette palette)
 	{
-		this.lastX = this.dimX - 1;
-		this.lastY = this.dimY - 1;
 		this.palette = palette;
 		this.setControlEnabled(this.controlEnabled);
 	}
@@ -58,6 +56,13 @@ public class EditableLevel extends ViewableLevel implements Clickable
 		content.put(Level.DIFFICULTY, Difficulty.calculate(this.board, this.dimX, this.dimY).value);
 		return content;
 	}
+	@Override
+	protected void init(int[][] board, int dimX, int dimY)
+	{
+		super.init(board, dimX, dimY);
+		this.lastX = this.dimX - 1;
+		this.lastY = this.dimY - 1;
+	}
 	public boolean itemExists()
 	{
 		return this.levelItem != null;
@@ -70,23 +75,18 @@ public class EditableLevel extends ViewableLevel implements Clickable
 		if (value == -1)
 			return;
 
-		this.setFieldValue(
-				value,
+		this.setFieldValue(value,
 				PositionCalculator.getPosition(x, this.lastX, this.topRenderer.getMoveWidth()),
 				PositionCalculator.getPosition(y, this.lastY, this.topRenderer.getMoveHeight())
 		);
 
 		this.gameView.update();
 	}
-	public PlayableLevel toPlayableLevel()
+	@Override
+	public void onSizeChanged(int height, int width)
 	{
-		return new PlayableLevel(
-				this.createBoardCopy(),
-				this.dimX,
-				this.dimY,
-				this.gameView,
-				this.id
-		);
+		super.onSizeChanged(height, width);
+		this.setControlEnabled(this.controlEnabled);
 	}
 	@Override
 	public void renderTo(Canvas canvas)
@@ -122,6 +122,15 @@ public class EditableLevel extends ViewableLevel implements Clickable
 	private void setFieldValue(int value, int x, int y)
 	{
 		this.board[x][y] = value;
+	}
+	public PlayableLevel toPlayableLevel()
+	{
+		return new PlayableLevel(this.createBoardCopy(),
+				this.dimX,
+				this.dimY,
+				this.gameView,
+				this.id
+		);
 	}
 	public void update()
 	{

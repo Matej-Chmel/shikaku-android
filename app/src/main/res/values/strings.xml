@@ -30,5 +30,9 @@
 	<string name="button_main_createLevel_text">Create level</string>
 	<string name="menuItem_restart_title" translatable="false">Restart</string>
 	<string name="menuItem_resize_title">Resize</string>
+	<string name="textView_chooseDimensions_text" translatable="false">x</string>
+	<string name="toast_dimension_tooHigh">No dimension can be higher than %d.</string>
+	<string name="toast_dimension_oneTotalSpace">Level cannot consist of only one field.</string>
+	<string name="toast_dimension_notValid">The dimension value is not valid.</string>
 
 </resources>

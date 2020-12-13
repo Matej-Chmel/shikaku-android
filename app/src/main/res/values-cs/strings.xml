@@ -26,5 +26,8 @@
 	<string name="button_main_createLevel_text">Vytvořit hlavolam</string>
 	<string name="menuItem_resize_title">Zvolit velikost</string>
 	<string name="menuItem_resetLevels_title">Obnovit původní hlavolamy</string>
+	<string name="toast_dimension_tooHigh">Žádný z rozměrů nemůže překročit %d.</string>
+	<string name="toast_dimension_oneTotalSpace">Hlavolam se nemůže skládat pouze z jednoho pole.</string>
+	<string name="toast_dimension_notValid">Nepovolená hodnota rozměru.</string>
 
 </resources>

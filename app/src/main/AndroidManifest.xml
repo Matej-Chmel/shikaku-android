@@ -13,11 +13,11 @@
 		android:theme="@style/Theme.Shikaku"
 		tools:ignore="AllowBackup">
 
-		<activity android:name=".activities.ChooseNumberActivity" />
+		<activity android:name=".activities.ChooseDimensionsActivity" />
+		<activity android:name=".activities.ChooseFieldValueActivity" />
 		<activity android:name=".activities.ListActivity" />
 		<activity android:name=".activities.GameActivity" />
 		<activity android:name=".activities.AboutActivity" />
-
 		<activity android:name=".activities.MainActivity">
 
 			<intent-filter>

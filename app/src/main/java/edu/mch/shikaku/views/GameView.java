@@ -49,6 +49,15 @@ public class GameView extends CustomView
 
 		this.update();
 	}
+	public void resizeLevel(int dimX, int dimY)
+	{
+		if (this.level instanceof EditableLevel)
+		{
+			((EditableLevel) this.level).resize(dimX, dimY);
+			this.level.onSizeChanged(this.getHeight(), this.getWidth());
+			this.update();
+		}
+	}
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
