@@ -3,6 +3,7 @@ import android.content.Context;
 import java.io.IOException;
 import java.util.ArrayList;
 import edu.mch.shikaku.storage.AssetReader;
+import edu.mch.shikaku.storage.Preferences;
 
 public class SoundManager
 {
@@ -27,8 +28,50 @@ public class SoundManager
 		this.sounds.add(reader.readSound("sounds/remove.mp3"));
 		this.sounds.add(reader.readSound("sounds/victory.mp3"));
 		this.sounds.add(reader.readSound("sounds/wrong.mp3"));
+
+		this.applySoundSettings(Preferences.getInstance(context).getSoundSettings());
 	}
 
+	public void applySoundSettings(int soundSettings)
+	{
+		int length = this.sounds.size();
+		int weight = 1;
+
+		for (int i = 0; i < length; i++)
+		{
+			this.sounds.get(i).setActive((soundSettings & weight) != 0);
+			weight *= 2;
+		}
+	}
+	public void applySoundSettings(boolean[] soundSettings)
+	{
+		for (int i = 0; i < soundSettings.length; i++)
+			this.sounds.get(i).setActive(soundSettings[i]);
+	}
+	public boolean[] getSoundSettingsAsArray()
+	{
+		boolean[] array = new boolean[this.sounds.size()];
+
+		for (int i = 0; i < array.length; i++)
+			array[i] = this.sounds.get(i).isActive();
+
+		return array;
+	}
+	public int getSoundSettingsAsInteger()
+	{
+		int length = this.sounds.size();
+		int value = 0;
+		int weight = 1;
+
+		for (int i = 0; i < length; i++)
+		{
+			if (this.sounds.get(i).isActive())
+				value |= weight;
+			weight *= 2;
+		}
+
+		return value;
+	}
 	public void playSound(int position)
 	{
 		this.sounds.get(position).start();

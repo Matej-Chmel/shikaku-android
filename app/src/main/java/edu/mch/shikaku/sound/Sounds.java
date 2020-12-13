@@ -7,4 +7,5 @@ public class Sounds
 	public static final int REMOVE = 2;
 	public static final int VICTORY = 3;
 	public static final int WRONG = 4;
+	public static final int COUNT = 5;
 }

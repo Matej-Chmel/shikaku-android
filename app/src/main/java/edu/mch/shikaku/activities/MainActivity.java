@@ -7,14 +7,17 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import java.io.IOException;
 import edu.mch.shikaku.R;
 import edu.mch.shikaku.levels.LevelManager;
+import edu.mch.shikaku.sound.SoundManager;
 import edu.mch.shikaku.storage.NoLevelsException;
 import edu.mch.shikaku.storage.Preferences;
 
 public class MainActivity extends AppCompatActivity
 {
 	private LevelManager levelManager;
+	private Preferences preferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -23,12 +26,27 @@ public class MainActivity extends AppCompatActivity
 		this.setContentView(R.layout.activity_main);
 
 		this.levelManager = LevelManager.getInstance(this);
-		Preferences preferences = new Preferences(this);
+		this.preferences = Preferences.getInstance(this);
 
-		if (preferences.isFirstLaunch() && levelManager.resetLevels(this))
-			preferences.onFirstLaunchSuccess();
+		if (this.preferences.isFirstLaunch() && levelManager.resetLevels(this))
+			this.preferences.onFirstLaunchSuccess();
 	}
 
+	@Override
+	public void onBackPressed()
+	{
+		super.onBackPressed();
+
+		try
+		{
+			this.preferences.saveSoundSettings(SoundManager.getInstance(this)
+					.getSoundSettingsAsInteger());
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
 	public void onButtonCreateLevel(View view)
 	{
 		this.startGameActivity(-1, true);

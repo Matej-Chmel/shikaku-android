@@ -3,6 +3,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
 import edu.mch.shikaku.R;
@@ -25,6 +26,17 @@ public class SoundTestActivity extends AppCompatActivity
 		try
 		{
 			this.manager = SoundManager.getInstance(this);
+
+			boolean[] soundSettings = this.manager.getSoundSettingsAsArray();
+
+			this.setToggleButtonState(R.id.toggleButton_correct, soundSettings[Sounds.CORRECT]);
+			this.setToggleButtonState(
+					R.id.toggleButton_newBestTime,
+					soundSettings[Sounds.NEW_BEST_TIME]
+			);
+			this.setToggleButtonState(R.id.toggleButton_remove, soundSettings[Sounds.REMOVE]);
+			this.setToggleButtonState(R.id.toggleButton_victory, soundSettings[Sounds.VICTORY]);
+			this.setToggleButtonState(R.id.toggleButton_wrong, soundSettings[Sounds.WRONG]);
 		}
 		catch (IOException e)
 		{
@@ -33,9 +45,28 @@ public class SoundTestActivity extends AppCompatActivity
 		}
 	}
 
-	private void toastError()
+	private boolean getToggleButtonState(int id)
 	{
-		Toast.makeText(this, this.errorText, Toast.LENGTH_LONG).show();
+		return ((ToggleButton) this.findViewById(id)).isChecked();
+	}
+	private void setToggleButtonState(int id, boolean state)
+	{
+		((ToggleButton) this.findViewById(id)).setChecked(state);
+	}
+	@Override
+	public void onBackPressed()
+	{
+		super.onBackPressed();
+
+		boolean[] soundSettings = new boolean[Sounds.COUNT];
+
+		soundSettings[Sounds.CORRECT] = this.getToggleButtonState(R.id.toggleButton_correct);
+		soundSettings[Sounds.NEW_BEST_TIME] = this.getToggleButtonState(R.id.toggleButton_newBestTime);
+		soundSettings[Sounds.REMOVE] = this.getToggleButtonState(R.id.toggleButton_remove);
+		soundSettings[Sounds.VICTORY] = this.getToggleButtonState(R.id.toggleButton_victory);
+		soundSettings[Sounds.WRONG] = this.getToggleButtonState(R.id.toggleButton_wrong);
+
+		this.manager.applySoundSettings(soundSettings);
 	}
 	@SuppressLint("NonConstantResourceId")
 	public void onSoundButton(View view)
@@ -65,5 +96,9 @@ public class SoundTestActivity extends AppCompatActivity
 			this.toastError();
 		else
 			this.manager.playSound(position);
+	}
+	private void toastError()
+	{
+		Toast.makeText(this, this.errorText, Toast.LENGTH_LONG).show();
 	}
 }
