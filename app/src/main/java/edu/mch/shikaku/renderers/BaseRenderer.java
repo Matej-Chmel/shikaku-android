@@ -24,35 +24,25 @@ public class BaseRenderer extends LevelRenderer
 		this.currentPaint = this.paintList.next();
 
 		int lastX = (int) (this.dimX - 1);
+		int lastY = (int) (this.dimY - 1);
 		int lengthX = (int) (this.dimX + 1);
 		int fieldHeight = (int) (this.tileHeight + LevelRenderer.LINE_WIDTH);
 		int fieldWidth = (int) (this.tileWidth + LevelRenderer.LINE_WIDTH);
 
 		for (int y = 0; y < this.dimY; y++)
-		{
-			for (int x = 0; x < lastX; x++)
+			for (int x = 0; x < this.dimX; x++)
 			{
 				int startX = (int) (x * this.moveWidth);
 				int startY = (int) (y * this.moveHeight);
 
 				Objects.requireNonNull(fieldsByPosition.get(lengthX * y + x))
-						.setBackgroundRectangle(new Rect(startX,
+						.setBackgroundRectangle(new Rect(
+								startX,
 								startY,
-								startX + fieldWidth,
-								startY + fieldHeight
+								startX + fieldWidth + (x == lastX ? (int) LevelRenderer.LINE_WIDTH : 0),
+								startY + fieldHeight + (y == lastY ? (int) LevelRenderer.LINE_WIDTH : 0)
 						));
 			}
-
-			int startX = (int) (lastX * this.moveWidth);
-			int startY = (int) (y * this.moveHeight);
-
-			Objects.requireNonNull(fieldsByPosition.get(lengthX * y + lastX))
-					.setBackgroundRectangle(new Rect(startX,
-							startY,
-							(int) (startX + fieldWidth + LevelRenderer.LINE_WIDTH),
-							startY + fieldHeight
-					));
-		}
 	}
 
 	public void draw(LinkedHashSet<GameRectangle> gameRectangles)
